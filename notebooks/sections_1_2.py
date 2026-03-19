@@ -170,6 +170,18 @@ def section1_cells():
             '                    print(f"  [ERROR] Failed to fetch {url}: {e}")\n'
             "                    return None\n"
             "\n"
+            "    def is_fresh(self, key, subfolder='general'):\n"
+            '        """Check whether a cached entry exists for the given key."""\n'
+            "        return self.get(key, subfolder) is not None\n"
+            "\n"
+            "    def load(self, key, subfolder='general'):\n"
+            '        """Alias for get — load cached data."""\n'
+            "        return self.get(key, subfolder)\n"
+            "\n"
+            "    def save(self, key, data, subfolder='general'):\n"
+            '        """Alias for set — save data to cache."""\n'
+            "        self.set(key, data, subfolder)\n"
+            "\n"
             "cache = APICache()\n"
             "print('APICache initialised.')"
         ),
