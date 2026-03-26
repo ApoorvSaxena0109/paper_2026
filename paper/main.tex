@@ -334,7 +334,7 @@ $N$ & 34 & 34 & 34 & 34 & 34 & 34 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]\footnotesize
-\item \textit{Notes:} Dependent variable: CAR$_{[-10,+10]}$ in percent. HC3-robust $t$-statistics in parentheses. Macro controls: $\beta_{\text{vix}}$, $\beta_{\text{dxy}}$, $\beta_{\text{y10}}$. Fundamentals: historical volatility, log assets, debt-to-assets, price-to-book. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
+\item \textit{Notes:} Dependent variable: CAR$_{[-10,+10]}$ in percent. HC3-robust standard errors in parentheses. Macro controls: $\beta_{\text{vix}}$, $\beta_{\text{dxy}}$, $\beta_{\text{y10}}$. Fundamentals: historical volatility, log assets, debt-to-assets, price-to-book. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -345,7 +345,7 @@ $N$ & 34 & 34 & 34 & 34 & 34 & 34 \\
 
 \textit{Leave-one-out.} Sequentially dropping each ETF, $\gamma_1$ ranges from $+17.1$ (dropping XOP) to $+23.8$ (dropping OIH), with a mean of $+20.2$. All 34 estimates remain significant at the 5\% level. The most influential observation (OIH) \textit{raises} $\gamma_1$ when dropped, suggesting that its inclusion is conservative.
 
-\textit{Placebo events.} We repeat the analysis for 72 randomly selected non-event dates during 2020--2025 (minimum 15-day gap between placebos). The actual $\gamma_1 = +20.18$ and the $|\gamma_1|$ ranks at the 83.5th percentile of the placebo distribution, confirming that the Hormuz crisis generated an atypically strong oil-beta-CAR relationship.
+\textit{Placebo events.} We assess the unusualness of the Hormuz $\gamma_1$ using 85 rolling cross-sections (20-trading-day steps over 2020--2025) with fixed pre-Hormuz betas. The Hormuz $|\gamma_1| = 20.18$ ranks at the 83.5th percentile of this distribution, confirming that the crisis generated an atypically strong oil-beta-CAR relationship. Separately, 72 randomly selected non-overlapping placebo dates (minimum 15-day gap) are used for the aggregation masking analysis in Section~\ref{sec:masking}.
 
 \textit{Alternative event dates.} We test robustness to different Hormuz event date definitions (March 3: Iran announcement; March 5: first tanker interception; March 7: IEA emergency meeting). $\gamma_1$ is significant at the 1\% level for all dates, ranging from $+20.18$ to $+27.58$, confirming that the result is not sensitive to precise event date selection.
 
@@ -425,7 +425,7 @@ $N$ & 170 & 170 & 170 & 136 & 34 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]\footnotesize
-\item \textit{Notes:} Dependent variable: CAR$_{[-10,+10]}$ in percent. Supply is a dummy equal to one for Hormuz, Russia--Ukraine, OPEC+ Cut, and Hamas events; zero for COVID. Specs~(4) and~(5) restrict to supply-side ($N=136$) and demand-side ($N=34$) subsamples, respectively. Standard errors clustered by ETF in parentheses. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
+\item \textit{Notes:} Dependent variable: CAR$_{[-10,+10]}$ in percent. Supply is a dummy equal to one for Hormuz, Russia--Ukraine, OPEC+ Cut, and Hamas events; zero for COVID. Specs~(4) and~(5) restrict to supply-side ($N=136$) and demand-side ($N=34$) subsamples, respectively. $t$-statistics based on ETF-clustered standard errors in parentheses. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -531,7 +531,7 @@ To assess whether the observed masking is unusual relative to non-event periods,
 
 \subsection{International extension}
 
-As a supplementary analysis, we examine whether aggregation masking extends to the international level. Using 14 country ETFs and World Bank WDI data on energy import dependence, trade openness, and foreign exchange reserves, we estimate cross-country regressions of CARs on national characteristics. Energy import dependence is strongly significant ($\beta = -0.017$, $t = -4.50$, $p < 0.001$; $R^2 = 0.511$), indicating that countries more reliant on energy imports suffered larger equity losses. The cross-country analogue of $\Phi$ is 0.334, implying even greater masking at the international level---consistent with the broader diversification in global indices concealing substantial cross-country heterogeneity in shock exposure.
+As a supplementary analysis, we examine whether aggregation masking extends to the international level. Using 14 country ETFs and World Bank WDI data on energy import dependence, trade openness, and foreign exchange reserves, we estimate cross-country regressions of CARs on national characteristics. In the univariate specification, energy import dependence is strongly significant ($\beta = -0.015$, $t = -7.71$, $p < 0.001$; $R^2 = 0.511$). Adding trade openness and FX reserves raises the $R^2$ to 0.653, with the energy import coefficient remaining significant ($\beta = -0.017$, $t = -4.50$, $p < 0.001$). Countries more reliant on energy imports suffered larger equity losses. The cross-country analogue of $\Phi$ is 0.334, implying even greater masking at the international level---consistent with the broader diversification in global indices concealing substantial cross-country heterogeneity in shock exposure.
 
 % ====================================================================
 % 7. CONCLUSION
