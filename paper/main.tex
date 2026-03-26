@@ -481,7 +481,85 @@ To assess whether the observed masking is unusual relative to non-event periods,
 As a supplementary analysis, we examine whether aggregation masking extends to the international level. Using 14 country ETFs and World Bank WDI data on energy import dependence, trade openness, and foreign exchange reserves, we estimate cross-country regressions of CARs on national characteristics. Energy import dependence is strongly significant ($\beta = -0.017$, $t = -4.50$, $p < 0.001$; $R^2 = 0.511$), indicating that countries more reliant on energy imports suffered larger equity losses. The cross-country analogue of $\Phi$ is 0.334, implying even greater masking at the international level---consistent with the broader diversification in global indices concealing substantial cross-country heterogeneity in shock exposure.
 
 % ====================================================================
-% SECTIONS 7 + REFERENCES IN NEXT CHUNK
+% 7. CONCLUSION
 % ====================================================================
+\section{Conclusion}\label{sec:conclusion}
+
+This paper demonstrates that aggregate market indices systematically mask the heterogeneous effects of geopolitical oil shocks on sectoral equity returns. Using a multi-event framework spanning five major oil-related shocks, we establish four empirical findings with implications for how we measure and interpret the economic impact of geopolitical risk.
+
+First, pre-event oil price sensitivity ($\beta_{\text{oil}}$) is the dominant cross-sectional predictor of sectoral CARs, with a coefficient of $\gamma_1 = +20.18$ ($p < 0.0001$ with GICS-clustered standard errors) that survives six increasingly saturated specifications including market risk, macroeconomic exposures, and firm fundamentals. The result is confirmed by double bootstrap inference (95\% CI: $[+15.25, +31.56]$), leave-one-out analysis, placebo falsification, and alternative event date specifications.
+
+Second, the oil transmission channel operates through identifiable economic mechanisms. While individual interaction terms for energy intensity, supply chain dependence, and trade exposure are not individually significant at $N = 34$, they are directionally consistent with theory and collectively raise the cross-sectional $R^2$ from 0.422 to 0.728. Augmented regressions confirm that $\beta_{\text{oil}}$ survives the inclusion of all mechanism controls ($+4.5\%$ attenuation, $p = 0.002$), indicating that oil exposure is a distinct channel rather than a proxy for sector fundamentals.
+
+Third, our bounded Aggregation Masking Index ($\Psi$) reveals that approximately 94.7\% of sectoral return variation is concealed by capitalization-weighted aggregation---and this holds across all five events regardless of shock type or magnitude. Unlike the traditional ratio-based $\Phi$, our $\Psi$ index is bounded on $[0,1]$ by Jensen's inequality and provides a theoretically grounded measure of information loss. The near-invariance of $\Psi$ across events (range: 0.936--0.960) suggests that aggregation masking is a structural feature of diversified indices, not an artifact of specific events.
+
+Fourth, the oil-beta transmission channel operates asymmetrically across shock types. In our multi-event panel (170 observations with event fixed effects), the $\beta_{\text{oil}} \times \text{Supply}$ interaction is $+58.79$ ($p < 0.0001$): supply-side shocks create sectoral winners and losers (positive $\gamma_1$), while demand-side shocks cause correlated losses with high-oil-beta sectors falling disproportionately (negative $\gamma_1$). This asymmetry is consistent with the theoretical predictions of \citet{kilian2009not} and generalizes across events spanning different time periods, magnitudes, and geopolitical contexts.
+
+These findings carry practical implications. Policymakers who monitor aggregate indices to assess the economic impact of geopolitical crises will systematically underestimate sectoral disruption---our evidence suggests by approximately 95\%. Investors who rely on broad market benchmarks for risk assessment may fail to detect the substantial reallocation occurring beneath the index surface. Researchers using aggregate market returns as dependent variables in studies of geopolitical risk may understate true economic effects and lose statistical power. Our $\Psi$ index provides a simple diagnostic: when $\Psi$ is large, index-level inference about economic impact should be treated with caution.
+
+Several limitations warrant discussion. The cross-sectional sample ($N = 34$ ETFs) limits the power of individual mechanism interaction tests, and sub-sector ETFs inherit parent GICS sector characteristics, introducing measurement noise. The multi-event panel uses pre-Hormuz betas for all events, treating oil sensitivity as time-invariant---an assumption that, while reasonable for sector-level analysis, may not hold over longer horizons. We defer formal testing of whether $\Psi$ predicts future market risk to future work, as the current five-event sample is insufficient for reliable predictive inference. As more geopolitical events accumulate, this becomes a natural extension of our framework.
+
+% ====================================================================
+% REFERENCES
+% ====================================================================
+\bibliographystyle{elsarticle-harv}
+
+\begin{thebibliography}{99}
+
+\bibitem[Arouri(2012)]{arouri2012oil}
+Arouri, M.E.H., 2012. Stock returns and oil price changes in Europe: A sector analysis. \textit{The Manchester School} 80(2), 237--261.
+
+\bibitem[Baker et~al.(2016)Baker, Bloom, and Davis]{baker2016measuring}
+Baker, S.R., Bloom, N., Davis, S.J., 2016. Measuring economic policy uncertainty. \textit{The Quarterly Journal of Economics} 131(4), 1593--1636.
+
+\bibitem[{BEA}(2022)]{bea2022io}
+{Bureau of Economic Analysis}, 2022. Input-Output Accounts Data: Use Tables and Total Requirements Tables. U.S. Department of Commerce.
+
+\bibitem[Broadstock et~al.(2012)Broadstock, Cao, and Zhang]{broadstock2012oil}
+Broadstock, D.C., Cao, H., Zhang, D., 2012. Oil shocks and their impact on energy related stocks in China. \textit{Energy Economics} 34(6), 1888--1895.
+
+\bibitem[Caldara and Iacoviello(2022)]{caldara2022measuring}
+Caldara, D., Iacoviello, M., 2022. Measuring geopolitical risk. \textit{American Economic Review} 112(4), 1194--1225.
+
+\bibitem[{\c{C}}at{\i}k et~al.(2020){\c{C}}at{\i}k, Huyug\"{u}zel K{\i}sla, and Akdeniz]{catik2020oil}
+{\c{C}}at{\i}k, A.N., Huyug\"{u}zel K{\i}sla, G.S., Akdeniz, C., 2020. Time-varying impact of oil prices on sectoral stock returns: Evidence from Turkey. \textit{Resources Policy} 69, 101845.
+
+\bibitem[{EIA}(2023)]{eia2023hormuz}
+{U.S. Energy Information Administration}, 2023. The Strait of Hormuz is the world's most important oil transit chokepoint. \textit{Today in Energy}, November 21, 2023.
+
+\bibitem[Hamilton(2003)]{hamilton2003oil}
+Hamilton, J.D., 2003. What is an oil shock? \textit{Journal of Econometrics} 113(2), 363--398.
+
+\bibitem[Kilian(2009)]{kilian2009not}
+Kilian, L., 2009. Not all oil price shocks are alike: Disentangling demand and supply shocks in the crude oil market. \textit{American Economic Review} 99(3), 1053--1069.
+
+\bibitem[Kilian and Park(2009)]{kilian2009impact}
+Kilian, L., Park, C., 2009. The impact of oil price shocks on the US stock market. \textit{International Economic Review} 50(4), 1267--1287.
+
+\bibitem[Kolari and Pynnönen(2010)]{kolari2010event}
+Kolari, J.W., Pynnönen, S., 2010. Event study testing with cross-sectional correlation of abnormal returns. \textit{The Review of Financial Studies} 23(11), 3996--4025.
+
+\bibitem[Long and Ervin(2000)]{long2000using}
+Long, J.S., Ervin, L.H., 2000. Using heteroscedasticity consistent standard errors in the linear regression model. \textit{The American Statistician} 54(3), 217--224.
+
+\bibitem[MacKinlay(1997)]{mackinlay1997event}
+MacKinlay, A.C., 1997. Event studies in economics and finance. \textit{Journal of Economic Literature} 35(1), 13--39.
+
+\bibitem[Narayan and Gupta(2015)]{narayan2015role}
+Narayan, P.K., Gupta, R., 2015. Has oil price predicted stock returns for over a century? \textit{Energy Economics} 48, 18--23.
+
+\bibitem[Ready(2018)]{ready2018oil}
+Ready, R.C., 2018. Oil prices and the stock market. \textit{Review of Finance} 22(1), 155--176.
+
+\bibitem[Scholtens and Yurtsever(2012)]{scholtens2012oil}
+Scholtens, B., Yurtsever, C., 2012. Oil price shocks and European industries. \textit{Energy Economics} 34(4), 1187--1195.
+
+\bibitem[Smales(2021)]{smales2021geopolitical}
+Smales, L.A., 2021. Geopolitical risk and volatility spillovers in oil and stock markets. \textit{The Quarterly Review of Economics and Finance} 80, 358--366.
+
+\bibitem[Vuolteenaho(2002)]{vuolteenaho2002what}
+Vuolteenaho, T., 2002. What drives firm-level stock returns? \textit{The Journal of Finance} 57(1), 233--264.
+
+\end{thebibliography}
 
 \end{document}
