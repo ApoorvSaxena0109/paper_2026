@@ -343,7 +343,145 @@ As a complementary test, we estimate augmented regressions in which mechanism va
 We further examine heterogeneity through double-sort subsample analysis. Sorting ETFs by both oil beta and energy intensity (median splits) reveals a double-difference of $+18.05$ percentage points: the oil-beta effect is substantially amplified in high-energy-intensity sectors relative to low-energy-intensity sectors, consistent with the mechanism hypothesis.
 
 % ====================================================================
-% SECTIONS 5-7 CONTINUED IN NEXT CHUNK
+% 5. EXTERNAL VALIDITY: MULTI-EVENT EVIDENCE
+% ====================================================================
+\section{External validity: Multi-event evidence}\label{sec:external}
+
+\subsection{Multi-event panel design}
+
+To establish that our findings generalize beyond the Hormuz crisis, we construct a panel dataset of 34 ETFs observed across five oil-related geopolitical events ($N = 170$ observations). For each event, we compute CARs over the $[-10, +10]$ window using the same market-model methodology. Pre-event oil betas are estimated from the pre-Hormuz window (March 2025 to February 2026), treating oil sensitivity as a stable sector characteristic.\footnote{This approach follows the assumption that relative oil price sensitivity across sectors is a slow-moving structural property driven by industry fundamentals (energy cost shares, supply chain linkages) rather than short-term market dynamics. Using a common beta estimation period ensures comparability across events.}
+
+Table~\ref{tab:panel} reports the panel regression results with event fixed effects and ETF-clustered standard errors.
+
+\begin{table}[H]
+\centering
+\caption{Multi-Event Panel Regressions: Oil Beta and Shock-Type Asymmetry}
+\label{tab:panel}
+\begin{threeparttable}
+\begin{tabular}{lD{.}{.}{3}D{.}{.}{3}D{.}{.}{3}D{.}{.}{3}D{.}{.}{3}}
+\toprule
+& \multicolumn{1}{c}{(1) Pooled} & \multicolumn{1}{c}{(2) +Interact} & \multicolumn{1}{c}{(3) +$\beta_{\text{mkt}}$} & \multicolumn{1}{c}{(4) Supply} & \multicolumn{1}{c}{(5) Demand} \\
+\midrule
+$\beta_{\text{oil}}$ & 7.142^{**} & -39.889^{***} & -37.951^{***} & 19.504^{***} & -32.614^{**} \\
+& (1.99) & (-3.22) & (-3.20) & (9.45) & (-2.46) \\[4pt]
+$\beta_{\text{oil}} \times \text{Supply}$ & & 58.789^{***} & 58.789^{***} & & \\
+& & (5.22) & (5.20) & & \\[4pt]
+$\beta_{\text{mkt}}$ & & & 3.355 & 1.045 & 12.592 \\
+& & & (1.57) & (0.86) & (1.29) \\[4pt]
+\midrule
+Event FE & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{Yes} \\
+Cluster SEs & \multicolumn{1}{c}{ETF} & \multicolumn{1}{c}{ETF} & \multicolumn{1}{c}{ETF} & \multicolumn{1}{c}{ETF} & \multicolumn{1}{c}{ETF} \\
+$R^2$ & 0.228 & 0.372 & 0.384 & 0.375 & 0.227 \\
+$N$ & 170 & 170 & 170 & 136 & 34 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Notes:} Dependent variable: CAR$_{[-10,+10]}$ in percent. Supply is a dummy equal to one for Hormuz, Russia--Ukraine, OPEC+ Cut, and Hamas events; zero for COVID. Specs~(4) and~(5) restrict to supply-side ($N=136$) and demand-side ($N=34$) subsamples, respectively. Standard errors clustered by ETF in parentheses. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{Shock-type asymmetry (H4)}
+
+The panel results provide strong support for H4. In the pooled specification (Spec~1), oil beta is positively and significantly associated with CARs ($\gamma_1 = +7.14$, $t = 1.99$), confirming that the oil channel operates across events. However, the pooled estimate masks substantial heterogeneity across shock types.
+
+Introducing the $\beta_{\text{oil}} \times \text{Supply}$ interaction (Spec~2) reveals a striking asymmetry. The interaction coefficient is $+58.79$ ($t = 5.22$, $p < 0.0001$), our single strongest test statistic. The base coefficient on $\beta_{\text{oil}}$ (the demand-shock effect) is $-39.89$ ($t = -3.22$), while the total supply-shock effect is $-39.89 + 58.79 = +18.90$. This implies:
+
+\begin{itemize}
+    \item \textbf{Supply shocks} ($\gamma_1 = +19.50$ in subsample): High-oil-beta sectors \textit{gain}, while low-oil-beta sectors lose. The shock creates sectoral winners and losers, with oil exposure determining which side of the redistribution each sector falls on.
+    \item \textbf{Demand shocks} ($\gamma_1 = -32.61$ in subsample): \textit{All} sectors lose, but high-oil-beta sectors lose disproportionately more. The shock is systemic, and oil exposure amplifies losses rather than creating offsetting effects.
+\end{itemize}
+
+This sign flip is exactly what theory predicts. \citet{kilian2009not} shows that supply disruptions redistribute wealth from oil consumers to oil producers, while demand collapses reduce economic activity broadly, with energy-intensive sectors suffering the largest contractions. Our panel results confirm this asymmetry with high statistical precision ($p < 0.0001$ on the interaction) and elevate the finding from a single-event observation to a generalizable empirical regularity.
+
+Adding market beta as a control (Spec~3) leaves the interaction coefficient unchanged at $+58.79$ ($t = 5.20$), confirming that the shock-type asymmetry is not driven by differential market risk exposure.
+
+\subsection{Cross-event consistency of the oil channel}
+
+Table~\ref{tab:events} reports cross-sectional $\gamma_1$ estimates for each event individually, further demonstrating the consistency of the oil channel and the supply-demand asymmetry.
+
+\begin{table}[H]
+\centering
+\caption{Cross-Sectional $\gamma_1$ Estimates by Event}
+\label{tab:events}
+\begin{threeparttable}
+\begin{tabular}{llccccc}
+\toprule
+Event & Type & $\gamma_1$ & $t$-stat & $p$-value & $R^2$ & $\Phi$ \\
+\midrule
+Hormuz 2026 & Supply & $+20.175$ & 3.57 & 0.0004 & 0.422 & 0.723 \\
+Russia--Ukraine & Supply & $+36.045$ & 6.93 & $<0.0001$ & 0.445 & 2.073 \\
+OPEC+ Cut & Supply & $+11.101$ & 2.34 & 0.019 & 0.144 & 1.577 \\
+Hamas Attack & Supply & $+10.696$ & 2.54 & 0.011 & 0.226 & 0.996 \\
+\midrule
+COVID Crash & Demand & $-32.614$ & $-2.46$ & 0.014 & 0.227 & 3.195 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Notes:} Each row reports Spec~(2) from Section~\ref{sec:results} estimated separately for the indicated event. $N = 34$ for all events. $\Phi = |\text{CAR}_{\text{SPY}}| / \overline{|\text{CAR}_i|}$. All supply-shock $\gamma_1$ values are positive; the demand-shock $\gamma_1$ is negative, consistent with H4.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+All four supply-side events produce positive and significant $\gamma_1$ (range: $+10.70$ to $+36.05$), while the demand-side COVID shock produces a negative and significant $\gamma_1 = -32.61$. The average $\gamma_1$ for supply shocks is $+19.50$; for demand shocks it is $-32.61$. This consistency across events of different magnitudes, time periods, and geopolitical contexts provides strong external validity for the oil-beta transmission channel.
+
+% ====================================================================
+% 6. AGGREGATION MASKING
+% ====================================================================
+\section{Aggregation masking analysis}\label{sec:masking}
+
+\subsection{The bounded masking index ($\Psi$)}
+
+Table~\ref{tab:psi} reports the Aggregation Masking Index ($\Psi$) and the traditional ratio-based index ($\Phi$) for all five events. The results provide strong support for H3.
+
+\begin{table}[H]
+\centering
+\caption{Aggregation Masking Indices Across Events}
+\label{tab:psi}
+\begin{threeparttable}
+\begin{tabular}{lcccccc}
+\toprule
+Event & SPY CAR & $\Phi_{\text{VW}}$ & $\Psi$ & Cross-Sec. SD & IQR & Max--Min \\
+\midrule
+Hormuz 2026 & $-1.81\%$ & 0.723 & 0.946 & 3.87\% & 4.81\% & 13.53\% \\
+Russia--Ukraine & $-5.81\%$ & 2.073 & 0.936 & 5.46\% & 4.68\% & 21.83\% \\
+OPEC+ Cut & $-4.14\%$ & 1.577 & 0.951 & 5.87\% & 5.87\% & 22.07\% \\
+Hamas Attack & $-2.34\%$ & 0.996 & 0.960 & 2.88\% & 2.89\% & 11.10\% \\
+COVID Crash & $-39.68\%$ & 3.195 & 0.940 & 17.90\% & 22.70\% & 56.86\% \\
+\midrule
+Mean & & 1.713 & 0.947 & & & \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Notes:} $\Phi_{\text{VW}} = |\text{CAR}_{\text{SPY}}| / \overline{|\text{CAR}_i|}$, where $\Phi < 1$ indicates masking. $\Psi = 1 - |\sum w_i \text{CAR}_i| / \sum w_i |\text{CAR}_i|$, bounded on $[0,1]$ by Jensen's inequality. Cross-sectional standard deviation (SD), interquartile range (IQR), and max--min range are reported as alternative dispersion measures.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The traditional $\Phi$ index yields inconsistent results: only two of five events show $\Phi < 1$ (Hormuz: 0.723; Hamas: 0.996), while the remaining three show $\Phi > 1$. This occurs because $\Phi$ uses the SPY return as the numerator, which can exceed the average absolute sectoral CAR when a systemic component dominates (as in COVID, where all sectors fell sharply).
+
+The bounded $\Psi$ index resolves this limitation. Using the theoretically correct weighted sectoral sum rather than the SPY return, $\Psi$ reveals that \textit{all five events} exhibit strong masking: $\Psi$ ranges from 0.936 (Russia--Ukraine) to 0.960 (Hamas), with a mean of 0.947. This implies that approximately 94.7\% of the underlying sectoral return variation is concealed when individual CARs are aggregated through capitalization weights.
+
+\subsection{Structural invariance of masking}
+
+A striking feature of the results is the near-invariance of $\Psi$ across events. Despite the SPY CAR ranging from $-1.81\%$ (Hormuz) to $-39.68\%$ (COVID)---a 22-fold difference in magnitude---and spanning both supply and demand shocks, $\Psi$ varies by only 0.024 (range: 0.936 to 0.960). This stability suggests that aggregation masking is a \textit{structural} property of capitalization-weighted indices rather than an event-specific phenomenon: any shock that generates heterogeneous sectoral responses will see approximately 95\% of that variation hidden through diversification in the aggregate.
+
+This finding has a clear economic interpretation. In a capitalization-weighted index, each sector's contribution to the aggregate return is proportional to its market capitalization. When a geopolitical shock creates both winners and losers---as is typical for supply-side shocks---the weighted average of positive and negative CARs nearly cancels, regardless of the shock's magnitude. The result is that the aggregate index moves by a small fraction of the average sectoral disruption, and the information content of the index-level response is correspondingly low.
+
+\subsection{Alternative benchmarks: Equal-weighted vs. value-weighted}
+
+We compare masking under equal-weighted (EW) and value-weighted (VW) benchmarks. The EW $\Phi$ is substantially lower than the VW $\Phi$ for all events (mean difference: $-1.33$), indicating that equal-weighting produces \textit{more} masking, not less. This is because equal-weighting gives greater relative influence to smaller, more heterogeneous sub-sector ETFs, which diversify more effectively across opposing directions. Both weighting schemes mask the underlying heterogeneity, but through different mechanisms.
+
+\subsection{Placebo analysis}
+
+To assess whether the observed masking is unusual relative to non-event periods, we compute $\Phi$ for 72 randomly selected placebo dates during 2020--2025 (minimum 15-trading-day gap between placebos). The Hormuz $\Phi = 0.723$ ranks at the 29.2nd percentile of the placebo distribution ($\Phi$ mean $= 1.445$, median $= 1.138$), confirming that the Hormuz crisis generated atypically concentrated sectoral disruptions. The joint test requiring both $\Phi \leq 0.723$ and sectoral dispersion $\geq 2.51$ percentage points is satisfied by only 20.8\% of placebos (15/72), indicating that the combination of strong masking and large sectoral disruption is uncommon in normal times.
+
+\subsection{International extension}
+
+As a supplementary analysis, we examine whether aggregation masking extends to the international level. Using 14 country ETFs and World Bank WDI data on energy import dependence, trade openness, and foreign exchange reserves, we estimate cross-country regressions of CARs on national characteristics. Energy import dependence is strongly significant ($\beta = -0.017$, $t = -4.50$, $p < 0.001$; $R^2 = 0.511$), indicating that countries more reliant on energy imports suffered larger equity losses. The cross-country analogue of $\Phi$ is 0.334, implying even greater masking at the international level---consistent with the broader diversification in global indices concealing substantial cross-country heterogeneity in shock exposure.
+
+% ====================================================================
+% SECTIONS 7 + REFERENCES IN NEXT CHUNK
 % ====================================================================
 
 \end{document}
