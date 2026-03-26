@@ -386,9 +386,13 @@ $N$ & 34 & 34 & 34 & 34 & 34 & 34 \\
 
 \textit{Alternative event windows.} To assess sensitivity to window length and potential contamination from confounding news, we estimate $\gamma_1$ across seven windows: $[0,+1]$, $[-1,+1]$, $[-3,+1]$, $[-3,+2]$, $[-3,+3]$, $[-5,+5]$, and $[-10,+10]$. The aggregation masking index $\Phi$ ranges from 0.364 ($[-3,+2]$, indicating 63.6\% masking) to 1.039 ($[0,+1]$), with stronger masking at intermediate horizons where sectoral divergence has time to develop but has not yet been offset by mean-reversion.
 
-\subsection{Mechanism identification (H2)}
+\textit{Dynamic effects.} To distinguish short-term reaction from persistent reallocation, we estimate $\gamma_1$ at post-event horizons of $t+1$, $t+3$, $t+5$, $t+10$, and $t+15$ trading days. The oil-beta effect builds steadily over time: $\gamma_1 = +4.48$ ($t = 2.00$, $p = 0.046$) at $t+1$, growing to $+14.27$ ($t = 2.72$, $p = 0.007$) at $t+10$ and $+25.06$ ($t = 5.30$, $p < 0.001$) at $t+15$. This monotonic increase indicates persistent sectoral reallocation driven by oil exposure rather than a short-term overreaction that subsequently reverses, and is consistent with the gradual propagation of supply-chain effects through the real economy.
 
-Table~\ref{tab:mechanism} reports the results of interaction tests designed to identify the economic channels through which oil exposure affects sectoral returns. We test three mechanism variables derived from BEA Input-Output data: energy intensity, supply chain dependence, and trade exposure.
+\textit{Placebo cross-sectional regressions.} To verify that the oil-beta-CAR relationship is event-specific rather than a spurious artefact of cross-sectional structure, we run the full cross-sectional regression (CAR $\sim$ $\beta_{\text{oil}}$ + $\beta_{\text{mkt}}$) on each of the 72 placebo dates. The placebo $\gamma_1$ distribution has a mean near zero ($+1.59$, std $= 15.01$), confirming that oil beta does not systematically predict CARs during non-event periods. The Hormuz $\gamma_1 = +20.18$ ranks at the 90.3rd percentile of this distribution, indicating that the observed relationship is atypically strong. Approximately 66.7\% of placebo dates produce individually significant $\gamma_1$ at the 5\% level, reflecting oil beta's general role as a cross-sectional risk characteristic, but the Hormuz magnitude is exceptional.
+
+\subsection{Suggestive mechanism evidence (H2)}
+
+Table~\ref{tab:mechanism} reports the results of interaction tests designed to explore the economic channels through which oil exposure may affect sectoral returns. We test three mechanism variables derived from BEA Input-Output data: energy intensity, supply chain dependence, and trade exposure. We emphasize at the outset that these results constitute suggestive evidence consistent with mechanism theory rather than definitive identification of specific channels, given the limited cross-sectional variation ($N = 34$) and high correlation among mechanism variables.
 
 In individual interaction models, the coefficients on the interaction terms are directionally consistent with H2: energy intensity ($+7.11$, $p = 0.268$) and supply chain dependence ($+8.67$, $p = 0.135$) both carry positive signs, suggesting amplification of the oil channel, while trade exposure ($-1.93$, $p = 0.897$) is essentially zero. None are individually significant at conventional levels. We emphasize that this non-significance likely reflects two sources of attenuation: first, insufficient statistical power with $N = 34$ and high correlation between energy intensity and supply chain dependence ($r = 0.97$, as reported in Table~\ref{tab:descriptive}); second, classical measurement error from sub-sector ETFs inheriting parent GICS sector mechanism values (e.g., JETS receives the broad Industrials energy intensity of 11.7\%, whereas airlines' actual fuel cost share is substantially higher). This measurement noise biases interaction coefficients toward zero, making our non-significant results conservative.
 
@@ -436,7 +440,9 @@ $N$ & 34 & 34 & 34 & 34 & 34 \\
 
 As a complementary test, we estimate augmented regressions in which mechanism variables enter as direct controls alongside $\beta_{\text{oil}}$. When energy intensity, supply chain dependence, and trade exposure are added individually, $\beta_{\text{oil}}$ remains virtually unchanged ($+20.58$, $+24.48$, and $+16.29$, all $p < 0.05$). In the specification including all three mechanism variables simultaneously, $\gamma_1 = +21.08$ ($p = 0.002$), with attenuation of only $+4.5\%$ from the baseline---confirming that oil beta represents a distinct transmission channel rather than merely proxying for energy intensity or supply chain exposure.
 
-We further examine heterogeneity through double-sort subsample analysis. Sorting ETFs by both oil beta and energy intensity (median splits) reveals a double-difference of $+18.05$ percentage points: the oil-beta effect is substantially amplified in high-energy-intensity sectors relative to low-energy-intensity sectors, consistent with the mechanism hypothesis.
+The most intuitive evidence for the mechanism hypothesis comes from subsample analysis. Splitting ETFs at the median of energy intensity and estimating $\gamma_1$ separately, we find that the oil-beta coefficient is substantially larger in high-energy-intensity sectors than in low-energy-intensity sectors. A double-sort by both oil beta and energy intensity (median splits) yields a double-difference of $+18.05$ percentage points: the oil-beta effect is amplified in high-energy-intensity sectors relative to low-energy-intensity sectors. Similarly, splitting by supply chain dependence, high-exposure sectors show mean CARs of $-1.35\%$ versus $-1.25\%$ for low-exposure sectors---the difference is small, consistent with the attenuation from inherited mechanism values discussed above. We also explored triple interactions (OilBeta $\times$ Supply $\times$ Mechanism) in the panel, but the limited cross-sectional variation in mechanism variables---which take only 11 unique values at the GICS sector level---prevented identification of higher-order interaction effects.
+
+Overall, the mechanism evidence is best characterized as suggestive and directionally consistent with theory: energy intensity and supply chain dependence amplify the oil-beta channel, the double-sort confirms this pattern non-parametrically, and oil beta remains a distinct predictor even after controlling for mechanism variables. However, definitive identification of individual channels awaits more granular data, such as firm-level energy cost disclosures or sub-industry input-output tables.
 
 % ====================================================================
 % 5. EXTERNAL VALIDITY: MULTI-EVENT EVIDENCE
@@ -445,7 +451,7 @@ We further examine heterogeneity through double-sort subsample analysis. Sorting
 
 \subsection{Multi-event panel design}
 
-To establish that our findings generalize beyond the Hormuz crisis, we construct a panel dataset of 34 ETFs observed across five oil-related geopolitical events ($N = 170$ observations). For each event, we compute CARs over the $[-10, +10]$ window using the same market-model methodology. Pre-event oil betas are estimated from the pre-Hormuz window (March 2025 to February 2026), treating oil sensitivity as a stable sector characteristic.\footnote{This design choice warrants discussion. Using a common beta estimation period ensures cross-event comparability but introduces a look-ahead concern for historical events: the 2025--2026 betas embed information about sectoral restructuring that occurred after the earlier events. We adopt this approach because our interest is in whether \textit{current} sectoral oil exposure is associated with \textit{past} event responses---i.e., whether the cross-sectional pattern is stable over time. The fact that pre-Hormuz betas predict CARs for events 4--6 years earlier supports the view that relative oil sensitivity is a persistent sector characteristic. Nevertheless, we interpret the historical event results as documenting cross-sectional \textit{associations} rather than out-of-sample \textit{predictions}, and we encourage future work to re-estimate with event-specific betas as a robustness check.}
+To establish that our findings generalize beyond the Hormuz crisis, we construct a panel dataset of 34 ETFs observed across five oil-related geopolitical events ($N = 170$ observations). For each event, we compute CARs over the $[-10, +10]$ window using the same market-model methodology. Pre-event oil betas are estimated from the pre-Hormuz window (March 2025 to February 2026), treating oil sensitivity as a stable sector characteristic.\footnote{This design choice warrants discussion. Using a common beta estimation period ensures cross-event comparability but introduces a look-ahead concern for historical events: the 2025--2026 betas embed information about sectoral restructuring that occurred after the earlier events. We adopt this approach because our interest is in whether \textit{current} sectoral oil exposure is associated with \textit{past} event responses---i.e., whether the cross-sectional pattern is stable over time. The fact that pre-Hormuz betas predict CARs for events 4--6 years earlier supports the view that relative oil sensitivity is a persistent sector characteristic. Nevertheless, we interpret the historical event results as documenting cross-sectional \textit{associations} rather than out-of-sample \textit{predictions}. As a robustness check, we re-estimate oil betas using event-specific pre-event windows for each historical event (Table~\ref{tab:eventbetas}).}
 
 Table~\ref{tab:panel} reports the panel regression results with event fixed effects and ETF-clustered standard errors.
 
@@ -534,6 +540,34 @@ COVID Crash & Demand & $-32.614$ & $-2.46$ & 0.014 & 0.227 & 3.195 \\
 \end{table}
 
 All four supply-side events produce positive and significant $\gamma_1$ (range: $+10.70$ to $+36.05$), while the demand-side COVID shock produces a negative and significant $\gamma_1 = -32.61$. The average $\gamma_1$ for supply shocks is $+19.50$; for demand shocks it is $-32.61$. This consistency across events of different magnitudes, time periods, and geopolitical contexts provides strong external validity for the oil-beta transmission channel, complementing panel evidence on oil-conflict-stock return dynamics in \citet{dong2024interplay}.
+
+\subsection{Robustness: Event-specific beta estimation}
+
+To address the look-ahead concern inherent in using pre-Hormuz betas for historical events, we re-estimate oil betas using event-specific estimation windows (240 trading days ending 10 days before each event). Table~\ref{tab:eventbetas} reports the results.
+
+\begin{table}[H]
+\centering
+\caption{Event-Specific Beta Robustness: $\gamma_1$ With Event-Specific Oil Betas}
+\label{tab:eventbetas}
+\begin{threeparttable}
+\begin{tabular}{llccccl}
+\toprule
+Event & Type & $\gamma_1$ & $t$-stat & $p$-value & $R^2$ & Sign vs.\ Main \\
+\midrule
+Hormuz 2026 & Supply & $+23.506$ & 3.73 & 0.0002 & 0.448 & Same \\
+Russia--Ukraine & Supply & $+24.555$ & 3.97 & 0.0001 & 0.287 & Same \\
+OPEC+ Cut & Supply & $+12.287$ & 2.35 & 0.019 & 0.172 & Same \\
+Mid-East 2023 & Supply & $+6.931$ & 1.37 & 0.171 & 0.087 & Same \\
+COVID Crash & Demand & $-61.544$ & $-5.53$ & $<0.0001$ & 0.263 & Same \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Notes:} Each row re-estimates the cross-sectional regression using oil betas computed from a 240-day estimation window ending 10 days before the respective event. ``Sign vs.\ Main'' indicates whether the sign matches Table~\ref{tab:events}. All four supply events produce positive $\gamma_1$ and COVID produces negative $\gamma_1$, matching the main results. The COVID coefficient is substantially larger in magnitude ($-61.54$ vs.\ $-32.61$), suggesting that the pre-Hormuz beta specification is conservative for the demand-side result.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The key finding is that all five events produce the same sign as the main specification, and four of five are statistically significant. The Mid-East 2023 event loses significance ($p = 0.171$), which is expected given that this was the weakest event in the main specification as well. Notably, the COVID result becomes \textit{stronger} with event-specific betas ($\gamma_1 = -61.54$, $t = -5.53$) compared to pre-Hormuz betas ($\gamma_1 = -32.61$, $t = -2.46$), indicating that the main-table demand-side estimate is conservative. These results substantially mitigate the look-ahead concern and support the interpretation that relative sectoral oil exposure is a persistent characteristic that predicts cross-sectional responses across multiple geopolitical events.
 
 % ====================================================================
 % 6. AGGREGATION MASKING
