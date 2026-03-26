@@ -303,6 +303,18 @@ SPY & S\&P 500 & $-1.81$ & --- & --- \\
 \end{threeparttable}
 \end{table}
 
+Figure~\ref{fig:event_study} visualizes the full cross-sectional distribution of CARs across all 34 ETFs (Panel~A) and the cumulative abnormal return paths over the event window (Panel~B). The sharp divergence between oil-linked gainers (upper bars) and oil-cost-sensitive losers (lower bars) is immediately apparent, while the CAR paths in Panel~B show that sectoral divergence emerged within the first few trading days and persisted through the end of the window.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_event_study.png}
+\caption{Sectoral Abnormal Returns Around the 2026 Hormuz Crisis}
+\label{fig:event_study}
+\begin{minipage}{\textwidth}\footnotesize
+\textit{Notes:} Panel~A displays CARs for all 34 ETFs across seven event windows, with the primary $[-10, +10]$ window highlighted. Panel~B shows the cumulative abnormal return path for each ETF over the $[-10, +10]$ window. The vertical dashed line marks the event date (February 28, 2026). Oil-linked ETFs (USO, XOP, FCG) diverge sharply upward; oil-cost-sensitive ETFs (ITB, XHB, JETS) diverge downward; while SPY moves minimally ($-1.81\%$).
+\end{minipage}
+\end{figure}
+
 \subsection{Cross-sectional determinants of CARs}
 
 Table~\ref{tab:crosssection} presents our main cross-sectional results. Across all six specifications, oil beta ($\gamma_1$) is the dominant predictor of CARs, providing strong support for H1.
@@ -312,6 +324,18 @@ In the baseline specification including only $\beta_{\text{oil}}$ (Spec~1), $\ga
 To address within-sector correlation, we re-estimate Spec~(2) and Spec~(3) with standard errors clustered at the GICS sector level (11 clusters). The clustered $t$-statistics are \textit{larger} than the HC3 values ($t = 6.01$ vs. $3.57$ for Spec~2; $t = 5.01$ vs. $3.52$ for Spec~3), indicating that within-cluster residual correlation is actually negative---sectors within the same GICS group have offsetting residuals, so HC3 standard errors are conservative.
 
 A one-standard-deviation increase in $\beta_{\text{oil}}$ predicts 18--21 percentage points higher CARs over the event window. In tercile splits, high-oil-beta ETFs earned $+4.39\%$ on average versus $-4.85\%$ for low-oil-beta ETFs, a spread of 9.25~pp ($t = 2.98$, $p = 0.008$).
+
+Figure~\ref{fig:scatter} displays the cross-sectional relationship visually. Panel~A plots $\beta_{\text{oil}}$ against CARs, showing a clear positive relationship: sectors with higher pre-event oil price sensitivity experienced more positive (or less negative) abnormal returns. The relationship is approximately linear, is not driven by a small number of outliers, and the regression line passes through the cluster of points rather than being pulled by extremes. Panel~B confirms that market beta ($\beta_{\text{mkt}}$) has no comparable cross-sectional explanatory power.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2_oilbeta_vs_car.png}
+\caption{Cross-Sectional Relationship: Oil Beta vs. Cumulative Abnormal Returns}
+\label{fig:scatter}
+\begin{minipage}{\textwidth}\footnotesize
+\textit{Notes:} Panel~A plots each ETF's pre-event oil price sensitivity ($\beta_{\text{oil}}$) against its CAR over the $[-10, +10]$ window. The dashed line represents the OLS fit ($\gamma_1 = +20.18$, $R^2 = 0.422$). Panel~B plots market beta ($\beta_{\text{mkt}}$) against CARs for comparison, showing no significant cross-sectional relationship. $N = 34$ ETFs.
+\end{minipage}
+\end{figure}
 
 \begin{table}[H]
 \centering
@@ -341,7 +365,17 @@ $N$ & 34 & 34 & 34 & 34 & 34 & 34 \\
 
 \subsection{Robustness of H1}
 
-\textit{Bootstrap inference.} A double bootstrap procedure (2,000 iterations resampling both estimation-window residuals and cross-sectional observations) yields a mean $\gamma_1^* = +23.18$ with a 95\% percentile confidence interval of $[+15.25, +31.56]$ and a bootstrap $p$-value of 0.000, confirming that the result is not driven by outliers or estimation uncertainty in factor betas.
+\textit{Bootstrap inference.} A double bootstrap procedure (2,000 iterations resampling both estimation-window residuals and cross-sectional observations) yields a mean $\gamma_1^* = +23.18$ with a 95\% percentile confidence interval of $[+15.25, +31.56]$ and a bootstrap $p$-value of 0.000, confirming that the result is not driven by outliers or estimation uncertainty in factor betas. Figure~\ref{fig:bootstrap} displays the full bootstrap distribution, showing that the entire mass of the distribution lies well above zero and the observed $\gamma_1$ falls near the center of the resampled distribution.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig3_bootstrap.png}
+\caption{Double Bootstrap Distribution of $\gamma_1$ (2,000 Iterations)}
+\label{fig:bootstrap}
+\begin{minipage}{0.85\textwidth}\footnotesize
+\textit{Notes:} The histogram shows the distribution of $\gamma_1^*$ from 2,000 double bootstrap iterations, each resampling both estimation-window residuals (to re-estimate betas) and cross-sectional observations (to re-estimate the cross-sectional regression). The red dashed line marks the observed OLS estimate ($\gamma_1 = +20.18$). The yellow dotted lines mark the 95\% percentile confidence interval $[+15.25, +31.56]$. Zero is far outside the support of the distribution.
+\end{minipage}
+\end{figure}
 
 \textit{Leave-one-out.} Sequentially dropping each ETF, $\gamma_1$ ranges from $+17.1$ (dropping XOP) to $+23.8$ (dropping OIH), with a mean of $+20.2$. All 34 estimates remain significant at the 5\% level. The most influential observation (OIH) \textit{raises} $\gamma_1$ when dropped, suggesting that its inclusion is conservative.
 
@@ -358,6 +392,18 @@ Table~\ref{tab:mechanism} reports the results of interaction tests designed to i
 In individual interaction models, the coefficients on the interaction terms are directionally consistent with H2: energy intensity ($+7.11$, $p = 0.268$) and supply chain dependence ($+8.67$, $p = 0.135$) both carry positive signs, suggesting amplification of the oil channel, while trade exposure ($-1.93$, $p = 0.897$) is essentially zero. None are individually significant at conventional levels. We emphasize that this non-significance likely reflects insufficient statistical power: with $N = 34$ and high correlation between energy intensity and supply chain dependence ($r = 0.97$, as reported in Table~\ref{tab:descriptive}), the cross-sectional variation is too limited to isolate individual mechanism effects.
 
 The full model including all three mechanism interactions achieves $R^2 = 0.728$, a substantial increase from the baseline $R^2 = 0.422$, indicating that mechanism variables collectively explain considerable cross-sectional heterogeneity. However, severe multicollinearity in the full model (variance inflation factors exceeding 10 for energy intensity and supply chain) renders individual coefficient estimates unstable---the sign reversals between individual and full-model specifications are symptomatic of this collinearity. Accordingly, we interpret the full-model $R^2$ as evidence that mechanism variables \textit{collectively} matter, while relying on the individual interaction models (Specs~1--3) for directional inference about specific channels.
+
+Figure~\ref{fig:mechanism} provides visual evidence of the mechanism channels at the GICS sector level ($N = 11$). Energy intensity and supply chain dependence both exhibit clear positive associations with CARs ($r = 0.65$ and $r = 0.47$, respectively), while trade exposure shows a weaker but positive relationship. These patterns are consistent with H2: sectors with greater real economic exposure to oil---through direct energy costs and indirect input-output linkages---experienced stronger responses to the Hormuz shock.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig5_mechanism_scatter.png}
+\caption{Sector Characteristics and Cumulative Abnormal Returns (GICS Sectors)}
+\label{fig:mechanism}
+\begin{minipage}{\textwidth}\footnotesize
+\textit{Notes:} Each panel plots a BEA-derived mechanism variable against CARs for the 11 GICS sector ETFs over the $[-10, +10]$ window. Panel~A: energy intensity (petroleum, coal, and utility input share from BEA Use Table). Panel~B: supply chain exposure (direct + indirect petroleum requirements from BEA Total Requirements Table). Panel~C: trade exposure (exports + imports as share of shipments from Census Trade data). Dashed lines represent OLS fits. HC3-robust standard errors.
+\end{minipage}
+\end{figure}
 
 \begin{table}[H]
 \centering
@@ -431,6 +477,18 @@ $N$ & 170 & 170 & 170 & 136 & 34 \\
 \end{table}
 
 \subsection{Shock-type asymmetry (H4)}
+
+Figure~\ref{fig:multievent} summarizes the multi-event evidence. Panel~A displays $\gamma_1$ estimates by event, with supply-side events in blue and the demand-side event in red. The sign flip between supply and demand shocks is immediately visible: all four supply shocks produce positive $\gamma_1$ (high-oil-beta sectors gain), while COVID produces a strongly negative $\gamma_1$ (high-oil-beta sectors lose disproportionately). Panel~B displays $\Phi$ across events, illustrating the variation in aggregate masking.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig4_multievent_panel.png}
+\caption{Multi-Event Evidence: $\gamma_1$ and $\Phi$ Across Five Geopolitical Oil Shocks}
+\label{fig:multievent}
+\begin{minipage}{\textwidth}\footnotesize
+\textit{Notes:} Panel~A displays the cross-sectional $\gamma_1$ coefficient (oil beta predicting CARs) for each event, estimated separately. Blue bars indicate supply-side shocks; the red bar indicates the demand-side shock (COVID). Significance levels: $^{***}p<0.01$, $^{**}p<0.05$. The horizontal dashed line at $\Phi = 1$ in Panel~B separates masking ($\Phi < 1$) from amplification ($\Phi > 1$). $N = 34$ ETFs per event.
+\end{minipage}
+\end{figure}
 
 The panel results provide strong support for H4. In the pooled specification (Spec~1), oil beta is positively and significantly associated with CARs ($\gamma_1 = +7.14$, $t = 1.99$), confirming that the oil channel operates across events. However, the pooled estimate masks substantial heterogeneity across shock types.
 
