@@ -1,7 +1,7 @@
 % ============================================================================
-% Geopolitical Risk and Sectoral Stock Returns:
-% Evidence from the 2026 Strait of Hormuz Crisis
-% Target Journal: Economics Letters (Elsevier, SSCI)
+% Geopolitical Oil Shocks, Sectoral Heterogeneity, and Aggregation Masking:
+% Evidence from a Multi-Event Framework
+% Target Journal: Research in International Business and Finance (RIBAF)
 % ============================================================================
 
 \documentclass[12pt,preprint,authoryear]{elsarticle}
@@ -23,19 +23,21 @@
 \usepackage{float}
 \usepackage{dcolumn}
 \usepackage{tabularx}
+\usepackage{pdflscape}
+\usepackage{array}
 
 % ---- Settings ----
 \doublespacing
 \hypersetup{colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue}
 
 % ---- Journal metadata ----
-\journal{Economics Letters}
+\journal{Research in International Business and Finance}
 
 \begin{document}
 
 \begin{frontmatter}
 
-\title{Aggregate Indices Mask Sectoral Disruptions: Cross-Sectional Evidence from the 2026 Strait of Hormuz Crisis}
+\title{Geopolitical Oil Shocks, Sectoral Heterogeneity, and Aggregation Masking: Evidence from a Multi-Event Framework}
 
 \author[inst1]{Apoorv Saxena}
 \ead{s1129420@mail.yzu.edu.tw}
@@ -50,11 +52,11 @@
                      country={Taiwan}}
 
 \begin{abstract}
-We exploit the February 28, 2026 Strait of Hormuz disruption as a natural experiment to study how geopolitical shocks propagate through US equity markets at the sectoral level. Using cross-sectional regressions on 34 sector ETFs, we show that pre-event oil price sensitivity ($\beta_{\text{oil}}$) strongly predicts cumulative abnormal returns ($\gamma_1 = +20.18$, $p < 0.001$), robust across six specifications including market risk, macroeconomic factors, and firm fundamentals. We introduce an Aggregation Masking Index ($\Phi = 0.723$), revealing that the S\&P~500 concealed 27.7\% of sectoral return dispersion. These findings demonstrate that aggregate market indices systematically understate the real economic impact of geopolitical risk shocks, with important implications for risk management and policy evaluation.
+Financial economists and practitioners routinely rely on aggregate market indices as summary statistics of economic conditions and the impact of macroeconomic shocks. This paper challenges the assumption that such indices accurately reflect the underlying economic effects of geopolitical oil shocks. Using a multi-event framework spanning five major oil-related shocks---the 2026 Strait of Hormuz crisis, the Russia--Ukraine conflict, OPEC+ production cuts, the Hamas attack, and the COVID-19 demand collapse---we show that pre-event oil price sensitivity ($\beta_{\text{oil}}$) strongly predicts cross-sectional cumulative abnormal returns ($\gamma_1 = +20.18$, $p < 0.0001$ with GICS-clustered standard errors). The transmission channel operates asymmetrically: positively for supply-side shocks ($\gamma_1 = +19.50$) and negatively for the demand-side shock ($\gamma_1 = -32.61$), with an interaction coefficient of $+58.79$ ($p < 0.0001$). To quantify information loss in aggregate indices, we introduce a bounded Aggregation Masking Index ($\Psi$), which reveals that approximately 94.7\% of sectoral return variation is concealed by capitalization-weighted aggregation across all five events. These findings demonstrate that reliance on aggregate indices systematically understates the economic impact of geopolitical shocks, with implications for policymakers, investors, and researchers who use market indices to infer macroeconomic conditions.
 \end{abstract}
 
 \begin{keyword}
-Geopolitical risk \sep Oil price shocks \sep Sectoral stock returns \sep Event study \sep Aggregation bias \sep Strait of Hormuz
+Geopolitical risk \sep Oil price shocks \sep Sectoral stock returns \sep Aggregation bias \sep Event study \sep Multi-event panel
 \end{keyword}
 
 \begin{keyword}[JEL]
@@ -68,208 +70,148 @@ G14 \sep G12 \sep F51 \sep Q43
 % ====================================================================
 \section{Introduction}
 
-Geopolitical risk shocks can disrupt financial markets and propagate to the real economy through commodity prices, supply chains, and investor sentiment \citep{caldara2022measuring}. However, the standard practice of evaluating these shocks through aggregate market indices may systematically understate their economic impact. If winners and losers offset each other in capitalization-weighted indices, the true sectoral disruption remains hidden---a phenomenon we term \textit{aggregation masking}.
+Financial economists and practitioners routinely rely on aggregate market indices---such as the S\&P~500---as summary statistics of economic conditions and the impact of macroeconomic shocks. This widespread practice implicitly assumes that aggregate indices accurately reflect the underlying economic effects of such shocks. In this paper, we challenge this assumption. We argue that when shocks generate heterogeneous responses across sectors, aggregate indices can systematically misrepresent the true economic impact.
 
-We exploit the February 28, 2026 Strait of Hormuz disruption---triggered by escalating Iran tensions and credible threats to close the world's most critical oil chokepoint---as a natural experiment. The Strait handles approximately 21\% of global petroleum consumption daily \citep{eia2023hormuz}. This event provides a clean identification setting: the shock was sudden, largely unanticipated, and primarily transmitted through oil price channels, making it ideal for cross-sectional identification.
+Geopolitical shocks provide a particularly relevant setting in which this issue arises. Such shocks are typically transmitted through specific economic channels---most notably energy prices, supply chains, and trade exposure---affecting industries asymmetrically \citep{kilian2009not,caldara2022measuring}. As a result, some sectors benefit while others experience substantial losses. When these heterogeneous responses are aggregated through capitalization-weighted indices, positive and negative effects may offset each other, leading to a muted aggregate response. Consequently, aggregate indices may exhibit a form of aggregation bias, obscuring economically meaningful sectoral disruptions.
 
-Our contribution is twofold. First, we show that pre-event oil price sensitivity ($\beta_{\text{oil}}$) is the dominant cross-sectional predictor of sectoral cumulative abnormal returns (CARs), with a coefficient of $\gamma_1 = +20.18$ ($p < 0.001$) that survives six increasingly saturated specifications. This finding is consistent with \citet{kilian2009not}, who demonstrates that not all oil price shocks are alike, and extends the sectoral heterogeneity documented by \citet{arouri2012oil} and \citet{broadstock2012oil} to a novel geopolitical context.
+We study this phenomenon using a multi-event framework centered on five major geopolitical oil shocks: the 2026 Strait of Hormuz crisis, the 2022 Russia--Ukraine conflict, the 2022 OPEC+ production cut, the 2023 Hamas attack, and the 2020 COVID-19 demand collapse. These events span both supply-side and demand-side oil shocks, enabling us to test whether the transmission channel operates differently across shock types---a distinction emphasized by \citet{kilian2009not} and \citet{kilian2009impact}.
 
-Second, we formalize the concept of aggregation masking through the index $\Phi$, defined as the ratio of index-level to average sectoral absolute CARs. Our estimate of $\Phi = 0.723$ implies that 27.7\% of sectoral return dispersion was absorbed by portfolio diversification within the S\&P~500. This relates to \citet{vuolteenaho2002what}, who shows that firm-level cash-flow news largely cancels in aggregation. We demonstrate that this masking effect has practical consequences: placebo analysis across 72 pseudo-events confirms that the Hormuz crisis generated unusually concentrated sectoral disruptions that aggregate indices failed to capture.
+We exploit the February 28, 2026 Strait of Hormuz disruption as our primary quasi-natural experiment. The Strait handles approximately 21\% of global petroleum consumption daily \citep{eia2023hormuz}, and the crisis was sudden, largely unanticipated, and primarily transmitted through oil price channels, making it ideal for cross-sectional identification. Using cross-sectional regressions on 34 sector and sub-sector ETFs, we show that pre-event oil price sensitivity ($\beta_{\text{oil}}$) strongly predicts cumulative abnormal returns (CARs), with $\gamma_1 = +20.18$ ($p < 0.0001$) that survives six increasingly saturated specifications including market risk, macroeconomic factors, and firm fundamentals. This finding generalizes across all five events in our panel.
+
+To quantify the extent to which aggregate indices mask these heterogeneous responses, we introduce a novel bounded measure---the Aggregation Masking Index ($\Psi$). Unlike simple ratios of index-level to sectoral returns, $\Psi$ is bounded on $[0,1]$ by Jensen's inequality and captures the degree to which capitalization-weighted aggregation conceals underlying sectoral variation. Empirically, we find $\Psi \approx 0.947$ across all five events, implying that approximately 94.7\% of economically meaningful sectoral variation is hidden through aggregation. Crucially, this result holds regardless of shock type or magnitude, suggesting that aggregation masking is a structural feature of capitalization-weighted indices rather than an event-specific phenomenon.
+
+This paper makes four contributions. First, we demonstrate that aggregate market indices systematically underestimate the economic impact of geopolitical shocks when sectoral responses are heterogeneous, contributing to the literature on aggregation and measurement in asset pricing \citep{vuolteenaho2002what}. Second, we identify oil price exposure as a key transmission mechanism linking geopolitical shocks to cross-sectional equity returns, extending the oil shock heterogeneity literature \citep{kilian2009not,arouri2012oil,broadstock2012oil}. Third, we propose $\Psi$ as a tractable and interpretable metric for quantifying aggregation-induced information loss, providing a new tool for measuring the gap between index-level and sector-level responses. Fourth, we establish that the oil-beta transmission channel operates asymmetrically across shock types---positively for supply-side shocks and negatively for demand-side shocks---elevating the analysis from a single-event case study to a generalizable framework.
+
+The remainder of the paper is organized as follows. Section~\ref{sec:background} provides institutional background and develops the hypotheses. Section~\ref{sec:data} describes the data and methodology. Section~\ref{sec:results} presents the main results on heterogeneous shock transmission and mechanism identification. Section~\ref{sec:external} extends the analysis to a multi-event panel and tests shock-type asymmetry. Section~\ref{sec:masking} analyzes aggregation masking. Section~\ref{sec:conclusion} concludes.
 
 % ====================================================================
-% 2. DATA AND METHODOLOGY
+% 2. EVENT BACKGROUND AND HYPOTHESES DEVELOPMENT
 % ====================================================================
-\section{Data and methodology}
+\section{Event background and hypotheses development}\label{sec:background}
+
+\subsection{The 2026 Strait of Hormuz crisis}
+
+On February 28, 2026, escalating tensions between Iran and a US-Israeli coalition culminated in military strikes near the Strait of Hormuz, the world's most critical oil transit chokepoint. The Strait connects the Persian Gulf to the Gulf of Oman and handles approximately 21 million barrels per day---roughly one-fifth of global petroleum consumption \citep{eia2023hormuz}. Iran's subsequent announcement of a partial blockade on March 3, followed by the first physical interception of a commercial tanker on March 5, triggered an immediate spike in crude oil prices and widespread uncertainty across global financial markets.
+
+This event provides a particularly clean identification setting for several reasons. First, the shock was sudden and largely unanticipated in its severity, satisfying the exogeneity condition required for event study methodology \citep{mackinlay1997event}. Second, the primary transmission channel---oil prices---is clearly identified and directly measurable, enabling us to construct sector-specific exposure measures. Third, the event generated sharp sectoral divergence: oil-linked ETFs such as USO gained over 42\%, while oil-cost-sensitive sectors such as homebuilders (ITB) lost over 16\%, even as the S\&P~500 declined by only 1.81\%.
+
+\subsection{Additional events and shock classification}
+
+To establish external validity and test shock-type asymmetry, we extend the analysis to four additional major oil-related geopolitical events:
+
+\begin{itemize}
+    \item \textbf{Russia--Ukraine conflict} (February 24, 2022): A supply-side shock that disrupted Russian oil and gas exports to Europe, triggering energy price surges and sanctions-related supply concerns.
+    \item \textbf{OPEC+ production cut} (October 5, 2022): A coordinated supply restriction of 2 million barrels per day, representing a deliberate supply-side intervention.
+    \item \textbf{Hamas attack} (October 9, 2023): A geopolitical shock raising concerns about broader Middle Eastern supply disruptions, classified as a supply-side risk event.
+    \item \textbf{COVID-19 demand collapse} (March 9, 2020): A demand-side shock driven by the global pandemic that caused an unprecedented collapse in oil consumption and prices.
+\end{itemize}
+
+Following \citet{kilian2009not}, we classify the first four events as supply-side shocks and COVID-19 as a demand-side shock. This classification is central to our fourth hypothesis: supply shocks create sectoral winners and losers (positive $\gamma_1$), while demand shocks cause correlated losses across all sectors, with high-oil-beta sectors falling disproportionately (negative $\gamma_1$).
+
+\subsection{Hypotheses development}
+
+Geopolitical shocks are often transmitted through specific economic channels, with oil prices playing a central role \citep{kilian2009not,hamilton2003oil}. However, sectors differ in their exposure to oil price fluctuations, leading to heterogeneous responses in equity returns \citep{arouri2012oil,scholtens2012oil}. When these heterogeneous responses are aggregated into market indices, offsetting effects may obscure the true economic impact of shocks. Based on this framework, we develop the following hypotheses.
+
+\bigskip
+\noindent\textbf{H1: Heterogeneous Shock Transmission.} \textit{The impact of geopolitical oil shocks on equity returns is heterogeneous across sectors and is systematically related to sectoral exposure to oil price fluctuations.}
+
+We test this hypothesis using cross-sectional regressions of the form:
+\begin{equation}\label{eq:h1}
+    \text{CAR}_i = \alpha + \gamma_1 \beta_{\text{oil},i} + \boldsymbol{\gamma}' \mathbf{X}_i + u_i
+\end{equation}
+where $\beta_{\text{oil},i}$ is the pre-event oil price sensitivity and $\mathbf{X}_i$ is a vector of controls. H1 predicts $\gamma_1 \neq 0$.
+
+\bigskip
+\noindent\textbf{H2: Mechanism Hypothesis.} \textit{The effect of oil price exposure on sectoral returns is amplified in sectors with higher energy intensity, supply-chain dependence, and trade exposure.}
+
+We test this using interaction regressions:
+\begin{equation}\label{eq:h2}
+    \text{CAR}_i = \alpha + \gamma_1 \beta_{\text{oil},i} + \gamma_2 M_i + \gamma_3 (\beta_{\text{oil},i} \times M_i) + \boldsymbol{\gamma}' \mathbf{X}_i + u_i
+\end{equation}
+where $M_i$ represents mechanism variables (energy intensity, supply chain dependence, or trade exposure). H2 predicts $\gamma_3 > 0$ for energy intensity and supply chain, indicating that these channels amplify the oil transmission mechanism.
+
+\bigskip
+\noindent\textbf{H3: Aggregation Masking Hypothesis.} \textit{When sectoral responses to geopolitical shocks are heterogeneous, aggregate market indices systematically understate the magnitude of economic disruption.}
+
+We test this using the Aggregation Masking Index:
+\begin{equation}\label{eq:h3}
+    \Psi_e = 1 - \frac{\left|\sum_{i=1}^{N} w_i \cdot \text{CAR}_{i,e}\right|}{\sum_{i=1}^{N} w_i \cdot |\text{CAR}_{i,e}|}
+\end{equation}
+where $w_i$ are capitalization weights. By Jensen's inequality, $\Psi \in [0,1]$. H3 predicts $\Psi > 0$ and substantively large, indicating meaningful information loss through aggregation.
+
+\bigskip
+\noindent\textbf{H4: Shock-Type Asymmetry.} \textit{The oil-beta transmission channel operates asymmetrically across shock types: positively for supply-side shocks and negatively for demand-side shocks.}
+
+We test this in a multi-event panel:
+\begin{equation}\label{eq:h4}
+    \text{CAR}_{i,e} = \beta_1 \beta_{\text{oil},i} + \beta_2 (\beta_{\text{oil},i} \times \text{Supply}_e) + \mu_e + \varepsilon_{i,e}
+\end{equation}
+where $\text{Supply}_e$ is a dummy equal to one for supply-side events and $\mu_e$ are event fixed effects. H4 predicts $\beta_2 > 0$, indicating that the total oil-beta effect ($\beta_1 + \beta_2$) is positive for supply shocks but negative ($\beta_1$ alone) for demand shocks.
+
+% ====================================================================
+% 3. DATA AND METHODOLOGY
+% ====================================================================
+\section{Data and methodology}\label{sec:data}
 
 \subsection{Data}
 
-We collect daily returns for 37 US sector and sub-sector ETFs from January 2018 to March 24, 2026 via Yahoo Finance, applying a liquidity filter requiring average daily dollar volume exceeding \$10 million. After dropping one ETF for insufficient liquidity and excluding SPY (used as the market benchmark), the cross-sectional sample comprises 34 ETFs spanning 11 GICS sectors and 24 sub-industry ETFs.\footnote{The ETF universe includes: XLK, XLF, XLV, XLE, XLI, XLY, XLP, XLRE, XLU, XLB, XLC (GICS sectors), and sub-sector ETFs including USO, XOP, FCG, ITB, JETS, KRE, SMH, among others. HACK was dropped for insufficient liquidity; SPY serves as the market return proxy.} Oil prices (WTI), the VIX, DXY, and 10-year Treasury yields are obtained from FRED. The Economic Policy Uncertainty (EPU) index \citep{baker2016measuring} serves as our primary uncertainty measure.
+We collect daily returns for 37 US sector and sub-sector ETFs from January 2018 to March 25, 2026 via Yahoo Finance. We apply a liquidity filter requiring average daily dollar volume exceeding \$10 million. After dropping one ETF for insufficient liquidity (HACK) and excluding SPY (used as the market benchmark), the cross-sectional sample comprises 34 ETFs spanning all 11 GICS sectors and 23 sub-industry ETFs.\footnote{The ETF universe includes GICS sector ETFs (XLK, XLF, XLV, XLE, XLI, XLY, XLP, XLRE, XLU, XLB, XLC) and sub-sector ETFs (USO, XOP, FCG, OIH, AMLP, TAN, URA, SMH, IGV, IBB, XBI, IHF, KBE, KRE, KIE, IAI, ITA, XAR, ITB, XHB, IYT, JETS, XRT, REMX). SPY serves as the market return proxy.}
 
-\subsection{Event study}
+Oil prices (WTI crude), the CBOE Volatility Index (VIX), the US Dollar Index (DXY), and 10-year Treasury yields are obtained from FRED. Sector-level mechanism variables---energy intensity, supply chain dependence, and trade exposure---are constructed from the Bureau of Economic Analysis (BEA) 2022 Annual Input-Output Tables (Use Table and Total Requirements Table) and Census Bureau trade data \citep{bea2022io}.
+
+\subsection{Event study methodology}
 
 We estimate market-model abnormal returns following \citet{mackinlay1997event}:
-\begin{equation}
-R_{it} = \alpha_i + \beta_i R_{mt} + \varepsilon_{it}
+\begin{equation}\label{eq:mktmodel}
+    R_{it} = \alpha_i + \beta_i R_{mt} + \varepsilon_{it}
 \end{equation}
-where the estimation window spans 240 trading days ending 10 days before the event (March 3, 2025 to February 12, 2026). Cumulative abnormal returns are computed over the primary $[-10, +10]$ window:
+where the estimation window spans 240 trading days ending 10 days before the event. For the primary Hormuz event, this corresponds to March 3, 2025 to February 12, 2026. Cumulative abnormal returns are computed over the primary $[-10, +10]$ window:
 \begin{equation}
-\text{CAR}_i = \sum_{t=-10}^{+10} \hat{\varepsilon}_{it}
+    \text{CAR}_i = \sum_{t=-10}^{+10} \hat{\varepsilon}_{it}
 \end{equation}
+Statistical significance is assessed using \citet{kolari2010event} adjusted $t$-statistics, which account for cross-sectional correlation and event-induced volatility.
 
-\subsection{Cross-sectional regressions}
+\subsection{Multi-factor beta estimation}
 
-We estimate six nested specifications of the form:
+To isolate oil price sensitivity from correlated factor exposures, we estimate a five-factor model in the pre-event estimation window:
+\begin{equation}
+    R_{it} = \alpha_i + \beta_{\text{mkt},i} R_{mt} + \beta_{\text{oil},i} R_{\text{oil},t} + \beta_{\text{vix},i} \Delta\text{VIX}_t + \beta_{\text{dxy},i} R_{\text{dxy},t} + \beta_{\text{y10},i} \Delta Y_{10,t} + \varepsilon_{it}
+\end{equation}
+where $R_{\text{oil},t}$ is the daily WTI crude oil return. The resulting $\beta_{\text{oil},i}$ measures each ETF's sensitivity to oil price movements, conditional on market, volatility, currency, and interest rate factors.
+
+\subsection{Cross-sectional regression specifications}
+
+We estimate six nested specifications of increasing saturation:
 \begin{equation}\label{eq:cross}
-\text{CAR}_i = \alpha + \gamma_1 \beta_{\text{oil},i} + \boldsymbol{\gamma}' \mathbf{X}_i + u_i
+    \text{CAR}_i = \alpha + \gamma_1 \beta_{\text{oil},i} + \boldsymbol{\gamma}' \mathbf{X}_i + u_i
 \end{equation}
-where $\beta_{\text{oil},i}$ is ETF $i$'s pre-event sensitivity to WTI crude oil returns, estimated jointly with $\beta_{\text{mkt}}$, $\beta_{\text{vix}}$, $\beta_{\text{dxy}}$, and $\beta_{\text{y10}}$ in the estimation window. Control vectors $\mathbf{X}_i$ progressively include market beta (Spec~2), macroeconomic betas (Spec~3--4), and fundamental characteristics---historical volatility, log total assets, debt-to-assets, and price-to-book (Spec~5--6). All standard errors are HC3-robust \citep{long2000using}.
 
-\subsection{Aggregation masking index}
+Specification~(1) includes only $\beta_{\text{oil}}$. Specification~(2) adds $\beta_{\text{mkt}}$. Specifications~(3)--(4) add macroeconomic factor betas ($\beta_{\text{vix}}$, $\beta_{\text{dxy}}$, $\beta_{\text{y10}}$). Specifications~(5)--(6) add fundamental characteristics: historical volatility, log total assets, debt-to-assets ratio, and price-to-book ratio. All standard errors are HC3-robust \citep{long2000using}, with GICS-sector clustering as a robustness check.
 
-We define the Aggregation Masking Index as:
-\begin{equation}
-\Phi = \frac{|\text{CAR}_{\text{SPY}}|}{\frac{1}{N}\sum_{i=1}^{N}|\text{CAR}_i|}
+\subsection{Mechanism variables}
+
+To test H2, we construct three sector-level mechanism variables from BEA Input-Output data:
+
+\begin{itemize}
+    \item \textbf{Energy intensity}: The share of petroleum, coal, and utility inputs in total intermediate consumption, computed from the BEA 2022 Use Table. Values range from 2.1\% (Communication Services) to 82.3\% (Energy).
+    \item \textbf{Supply chain dependence}: The direct and indirect petroleum requirements coefficient from the BEA 2022 Total Requirements Table. Values range from 0.03 (Communication Services) to 0.92 (Energy).
+    \item \textbf{Trade exposure}: The ratio of exports plus imports to total shipments, computed from Census Bureau USA Trade Online data. Values range from 2.9\% (Utilities) to 52.8\% (Technology).
+\end{itemize}
+
+Sub-sector ETFs inherit the mechanism variable values of their parent GICS sector. All mechanism variables are standardized (mean zero, unit variance) before entering interaction terms.
+
+\subsection{Aggregation Masking Index ($\Psi$)}
+
+We define the bounded Aggregation Masking Index as:
+\begin{equation}\label{eq:psi}
+    \Psi_e = 1 - \frac{\left|\sum_{i=1}^{N} w_i \cdot \text{CAR}_{i,e}\right|}{\sum_{i=1}^{N} w_i \cdot |\text{CAR}_{i,e}|}
 \end{equation}
-where $\Phi < 1$ indicates that the aggregate index understates sectoral disruption. Lower values of $\Phi$ correspond to greater masking.
+where $w_i$ are capitalization weights that sum to one. By Jensen's inequality, $|\sum w_i \cdot \text{CAR}_i| \leq \sum w_i \cdot |\text{CAR}_i|$, ensuring $\Psi \in [0,1]$. A value of $\Psi = 0$ indicates no masking (all sectors move in the same direction), while $\Psi = 1$ indicates complete masking (the weighted sum of CARs is exactly zero despite nonzero individual CARs). We interpret $\Psi$ as the fraction of sectoral return variation that is concealed through capitalization-weighted aggregation.
+
+We also report the traditional ratio-based index $\Phi = |\text{CAR}_{\text{SPY}}| / \overline{|\text{CAR}_i|}$ for comparison, where values below one indicate that the aggregate index understates average sectoral disruption.
 
 % ====================================================================
-% 3. RESULTS
+% SECTIONS 4-7 CONTINUED IN SUBSEQUENT CHUNKS
 % ====================================================================
-\section{Results}
-
-\subsection{Event study: Sectoral heterogeneity}
-
-Table~\ref{tab:cars} reports CARs for selected ETFs over the $[-10, +10]$ window. The results reveal sharp sectoral divergence. Oil-linked ETFs gained substantially: USO ($+42.34\%$, $t = 4.80$), XOP ($+17.03\%$, $t = 2.26$), and FCG ($+15.70\%$, $t = 2.06$). Conversely, oil-cost-sensitive sectors suffered: ITB ($-16.63\%$, $t = -2.15$), JETS ($-14.67\%$, $t = -2.20$), and XHB ($-14.68\%$, $t = -2.13$). Meanwhile, the S\&P~500 showed a CAR of only $-1.81\%$, consistent with offsetting effects masking the underlying sectoral disruptions.
-
-\begin{table}[H]
-\centering
-\caption{Selected Cumulative Abnormal Returns, $[-10, +10]$ Window}
-\label{tab:cars}
-\begin{threeparttable}
-\begin{tabular}{llccc}
-\toprule
-ETF & Sector & CAR (\%) & $t$-stat & $p$-value \\
-\midrule
-\multicolumn{5}{l}{\textit{Panel A: Oil-sensitive gainers}} \\
-USO & Crude Oil & $+42.34$ & 4.798 & $< 0.001$ \\
-XOP & Oil \& Gas Exploration & $+17.03$ & 2.260 & 0.025 \\
-FCG & Natural Gas & $+15.70$ & 2.057 & 0.041 \\
-XLE & Energy Sector & $+7.75$ & 1.315 & 0.190 \\
-\midrule
-\multicolumn{5}{l}{\textit{Panel B: Oil-cost-sensitive losers}} \\
-ITB & Home Construction & $-16.63$ & $-2.151$ & 0.032 \\
-JETS & Airlines & $-14.67$ & $-2.198$ & 0.029 \\
-XHB & Homebuilders & $-14.68$ & $-2.127$ & 0.034 \\
-KBE & Banking & $-8.84$ & $-1.706$ & 0.089 \\
-KRE & Regional Banks & $-8.92$ & $-1.534$ & 0.126 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}[flushleft]\footnotesize
-\item \textit{Notes:} CARs computed using market-model residuals with a 240-day estimation window (March 3, 2025 to February 12, 2026). SPY serves as the market benchmark and is excluded from the cross-sectional sample. $t$-statistics follow \citet{kolari2010event}. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
-\end{tablenotes}
-\end{threeparttable}
-\end{table}
-
-\subsection{Cross-sectional determinants of CARs}
-
-Table~\ref{tab:crosssection} presents our main results. Across all six specifications, oil beta ($\gamma_1$) is the dominant predictor of CARs. In the baseline (Spec~1), $\gamma_1 = +21.45$ ($t = 3.72$, $R^2 = 0.404$). Adding market beta (Spec~2) leaves the estimate virtually unchanged at $+20.18$ ($t = 3.57$, $R^2 = 0.422$). The coefficient remains stable when progressively adding macroeconomic factor betas (Spec~3: $\gamma_1 = +18.38$, $p < 0.001$) and the full suite of fundamental controls (Spec~6: $\gamma_1 = +19.22$, $p = 0.004$, $R^2 = 0.682$). The attenuation from Spec~1 to Spec~6 is only 10.4\%, indicating that oil beta is not proxying for market risk, volatility exposure, firm size, leverage, or valuation.
-
-A one-standard-deviation increase in $\beta_{\text{oil}}$ predicts 18--21 percentage points higher CARs over the event window. In tercile splits, high-oil-beta ETFs earned $+4.39\%$ on average versus $-4.85\%$ for low-oil-beta ETFs, a 9.25~pp spread ($t = 2.98$, $p = 0.008$).
-
-\begin{table}[H]
-\centering
-\caption{Cross-Sectional Determinants of Cumulative Abnormal Returns}
-\label{tab:crosssection}
-\begin{threeparttable}
-\begin{tabular}{lD{.}{.}{3}D{.}{.}{3}D{.}{.}{3}D{.}{.}{3}D{.}{.}{3}D{.}{.}{3}}
-\toprule
-& \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)} & \multicolumn{1}{c}{(5)} & \multicolumn{1}{c}{(6)} \\
-\midrule
-$\beta_{\text{oil}}$ & 21.448^{***} & 20.175^{***} & 18.380^{***} & 19.549^{***} & 21.546^{***} & 19.222^{***} \\
-& (5.77) & (5.65) & (5.22) & (5.92) & (6.32) & (6.67) \\[4pt]
-$\beta_{\text{mkt}}$ & & -2.203 & -10.252^{***} & & -1.522 & -5.042 \\
-& & (2.22) & (3.96) & & (3.17) & (9.89) \\[4pt]
-Macro controls & & & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{Yes} & & \multicolumn{1}{c}{Yes} \\
-Fundamentals & & & & & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{Yes} \\[4pt]
-\midrule
-$R^2$ & 0.404 & 0.422 & 0.597 & 0.496 & 0.521 & 0.682 \\
-$N$ & 34 & 34 & 34 & 34 & 34 & 34 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}[flushleft]\footnotesize
-\item \textit{Notes:} Dependent variable: CAR$_{[-10,+10]}$ in percent. HC3-robust standard errors in parentheses. Macro controls: $\beta_{\text{vix}}$, $\beta_{\text{dxy}}$, $\beta_{\text{y10}}$. Fundamentals: historical volatility, log assets, debt-to-assets, price-to-book. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
-\end{tablenotes}
-\end{threeparttable}
-\end{table}
-
-\subsection{Robustness}
-
-\textit{Bootstrap inference.} A double bootstrap (2,000 iterations resampling both estimation-window residuals and cross-sectional observations) yields a mean $\gamma_1^* = +23.18$ with 95\% percentile confidence interval $[+15.25, +31.56]$, confirming that the result is not driven by outliers or estimation uncertainty in factor betas.
-
-\textit{Leave-one-out.} Sequentially dropping each ETF, $\gamma_1$ ranges from $+17.1$ to $+23.8$ (mean $= +20.2$), with all estimates remaining significant at the 5\% level. The most influential observation (OIH) raises $\gamma_1$ to $+23.8$ when dropped, suggesting its inclusion is conservative.
-
-\textit{Placebo events.} We repeat the aggregation masking analysis for 72 randomly selected dates during 2020--2025. The actual $\Phi = 0.723$ ranks at the 29th percentile of the placebo distribution (lower $\Phi$ = more masking), and the joint test ($\Phi \leq 0.723$ \textit{and} sectoral dispersion $\geq 2.51$~pp) is satisfied by only 20.8\% of placebos, confirming that the Hormuz crisis generated atypically concentrated sectoral disruptions.
-
-\textit{Historical falsification.} The oil-beta channel is further validated by comparing $\gamma_1$ across historical events: $\gamma_1 = +36.0$ ($p < 0.001$) for Russia-Ukraine and $+11.1$ ($p = 0.019$) for the OPEC+ cut (both supply shocks), but $\gamma_1 = -32.6$ ($p = 0.014$) for the COVID crash (a demand shock), consistent with the theoretical prediction.
-
-\subsection{Aggregation masking}
-
-The Aggregation Masking Index is $\Phi = 0.723$ for the $[-10, +10]$ window, indicating that the S\&P~500 captured only 72.3\% of average sectoral absolute CARs. Masking is even more severe at shorter horizons: $\Phi = 0.364$ for the $[-3, +2]$ window, where 63.6\% of sectoral disruption was hidden. Among the 72 placebo events, the Hormuz $\Phi$ ranks at the 29th percentile, confirming that the degree of offsetting was atypically high. In a small-sample predictive regression across four historical events, $\Phi$ is positively associated with subsequent realized volatility at the 20-day ($\beta = +34.8$, $p = 0.074$) and 60-day ($\beta = +19.7$, $p = 0.018$) horizons, suggestive of a link between masking and forward-looking risk, though the 20-day result does not reach conventional significance.
-
-% ====================================================================
-% 4. CONCLUSION
-% ====================================================================
-\section{Conclusion}
-
-This paper exploits the 2026 Strait of Hormuz crisis to demonstrate two empirical findings with implications for how we measure the economic impact of geopolitical risk.
-
-First, oil price sensitivity is the dominant cross-sectional predictor of sectoral equity responses, robust to controls for market risk, macroeconomic exposures, and firm fundamentals. A one-standard-deviation increase in oil beta predicts roughly 20~pp higher CARs---a magnitude validated by bootstrap inference, leave-one-out analysis, and placebo falsification.
-
-Second, aggregate indices systematically mask sectoral disruptions. Our Aggregation Masking Index ($\Phi = 0.723$) shows that the S\&P~500 absorbed nearly 28\% of the underlying sectoral return dispersion. Policymakers and risk managers who rely solely on broad market indices will underestimate the real economic consequences of geopolitical shocks.
-
-These findings extend the oil price heterogeneity literature \citep{kilian2009not,arouri2012oil} to a novel geopolitical setting and formalize the aggregation problem highlighted by \citet{vuolteenaho2002what} in a policy-relevant context. Future work should examine the real-economy transmission through employment and output channels as post-event macroeconomic data become available.
-
-% ====================================================================
-% REFERENCES
-% ====================================================================
-\bibliographystyle{elsarticle-harv}
-
-\begin{thebibliography}{99}
-
-\bibitem[Arouri(2012)]{arouri2012oil}
-Arouri, M.E.H., 2012. Stock returns and oil price changes in Europe: A sector analysis. \textit{The Manchester School} 80(2), 237--261.
-
-\bibitem[Baker et~al.(2016)Baker, Bloom, and Davis]{baker2016measuring}
-Baker, S.R., Bloom, N., Davis, S.J., 2016. Measuring economic policy uncertainty. \textit{The Quarterly Journal of Economics} 131(4), 1593--1636.
-
-\bibitem[Broadstock et~al.(2012)Broadstock, Cao, and Zhang]{broadstock2012oil}
-Broadstock, D.C., Cao, H., Zhang, D., 2012. Oil shocks and their impact on energy related stocks in China. \textit{Energy Economics} 34(6), 1888--1895.
-
-\bibitem[Caldara and Iacoviello(2022)]{caldara2022measuring}
-Caldara, D., Iacoviello, M., 2022. Measuring geopolitical risk. \textit{American Economic Review} 112(4), 1194--1225.
-
-\bibitem[{\c{C}}at{\i}k et~al.(2020){\c{C}}at{\i}k, Huyug\"{u}zel K{\i}sla, and Akdeniz]{catik2020oil}
-{\c{C}}at{\i}k, A.N., Huyug\"{u}zel K{\i}sla, G.S., Akdeniz, C., 2020. Time-varying impact of oil prices on sectoral stock returns: Evidence from Turkey. \textit{Resources Policy} 69, 101845.
-
-\bibitem[{EIA}(2023)]{eia2023hormuz}
-{U.S. Energy Information Administration}, 2023. The Strait of Hormuz is the world's most important oil transit chokepoint. \textit{Today in Energy}, November 21, 2023.
-
-\bibitem[Hamilton(2003)]{hamilton2003oil}
-Hamilton, J.D., 2003. What is an oil shock? \textit{Journal of Econometrics} 113(2), 363--398.
-
-\bibitem[Kilian(2009)]{kilian2009not}
-Kilian, L., 2009. Not all oil price shocks are alike: Disentangling demand and supply shocks in the crude oil market. \textit{American Economic Review} 99(3), 1053--1069.
-
-\bibitem[Kilian and Park(2009)]{kilian2009impact}
-Kilian, L., Park, C., 2009. The impact of oil price shocks on the US stock market. \textit{International Economic Review} 50(4), 1267--1287.
-
-\bibitem[Kolari and Pynnönen(2010)]{kolari2010event}
-Kolari, J.W., Pynnönen, S., 2010. Event study testing with cross-sectional correlation of abnormal returns. \textit{The Review of Financial Studies} 23(11), 3996--4025.
-
-\bibitem[Kolari and Pynnönen(2011)]{kolari2011nonparametric}
-Kolari, J.W., Pynnönen, S., 2011. Nonparametric rank tests for event studies. \textit{Journal of Empirical Finance} 18(5), 953--971.
-
-\bibitem[Long and Ervin(2000)]{long2000using}
-Long, J.S., Ervin, L.H., 2000. Using heteroscedasticity consistent standard errors in the linear regression model. \textit{The American Statistician} 54(3), 217--224.
-
-\bibitem[MacKinlay(1997)]{mackinlay1997event}
-MacKinlay, A.C., 1997. Event studies in economics and finance. \textit{Journal of Economic Literature} 35(1), 13--39.
-
-\bibitem[Narayan and Gupta(2015)]{narayan2015role}
-Narayan, P.K., Gupta, R., 2015. Has oil price predicted stock returns for over a century? \textit{Energy Economics} 48, 18--23.
-
-\bibitem[Ready(2018)]{ready2018oil}
-Ready, R.C., 2018. Oil prices and the stock market. \textit{Review of Finance} 22(1), 155--176.
-
-\bibitem[Scholtens and Yurtsever(2012)]{scholtens2012oil}
-Scholtens, B., Yurtsever, C., 2012. Oil price shocks and European industries. \textit{Energy Economics} 34(4), 1187--1195.
-
-\bibitem[Smales(2021)]{smales2021geopolitical}
-Smales, L.A., 2021. Geopolitical risk and volatility spillovers in oil and stock markets. \textit{The Quarterly Review of Economics and Finance} 80, 358--366.
-
-\bibitem[Vuolteenaho(2002)]{vuolteenaho2002what}
-Vuolteenaho, T., 2002. What drives firm-level stock returns? \textit{The Journal of Finance} 57(1), 233--264.
-
-\end{thebibliography}
 
 \end{document}
