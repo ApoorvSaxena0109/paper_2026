@@ -641,7 +641,35 @@ We compare masking under equal-weighted (EW) and value-weighted (VW) benchmarks.
 
 \subsection{International extension}
 
-As a supplementary analysis, we examine whether aggregation masking extends to the international level. Using 14 country ETFs and World Bank WDI data on energy import dependence, trade openness, and foreign exchange reserves, we estimate cross-country regressions of CARs on national characteristics. In the univariate specification, energy import dependence is strongly significant ($\beta = -0.015$, $t = -7.71$, $p < 0.001$; $R^2 = 0.511$). Adding trade openness and FX reserves raises the $R^2$ to 0.653, with the energy import coefficient remaining significant ($\beta = -0.017$, $t = -4.50$, $p < 0.001$). Countries more reliant on energy imports suffered larger equity losses. The cross-country analogue of $\Phi$ is 0.334, implying even greater masking at the international level---consistent with the broader diversification in global indices concealing substantial cross-country heterogeneity in shock exposure.
+To examine whether aggregation masking extends beyond US sectors, we analyze 14 country ETFs during the Hormuz crisis using World Bank WDI data on energy import dependence, trade openness, and foreign exchange reserves. Table~\ref{tab:intl} reports cross-country regressions of CARs on national characteristics.
+
+\begin{table}[H]
+\centering
+\caption{International Cross-Country Regressions: CARs on National Characteristics}
+\label{tab:intl}
+\begin{threeparttable}
+\begin{tabular}{lD{.}{.}{3}D{.}{.}{3}D{.}{.}{3}}
+\toprule
+& \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} \\
+\midrule
+Energy import dep. (\%) & -0.015^{***} & -0.015^{***} & -0.017^{***} \\
+& (-7.71) & (-6.94) & (-4.50) \\[4pt]
+Trade openness (\%) & & 0.066^{***} & 0.072^{***} \\
+& & (2.68) & (3.45) \\[4pt]
+Log FX reserves & & & 0.596 \\
+& & & (0.58) \\[4pt]
+\midrule
+$R^2$ & 0.511 & 0.637 & 0.653 \\
+$N$ & 14 & 14 & 14 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Notes:} Dependent variable: country ETF CAR$_{[-10,+10]}$ in percent. Energy import dependence is net energy imports as a percentage of energy use (WDI indicator EG.IMP.CONS.ZS). Negative values indicate net exporters. HC1-robust $t$-statistics in parentheses. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Energy import dependence is the dominant predictor: a 10 percentage point increase in energy import reliance is associated with 0.15--0.17~pp more negative CARs. The cross-country analogue of $\Phi$ is 0.334, implying even greater masking at the international level than within the US market---consistent with the finding that global index diversification conceals substantial cross-country heterogeneity in shock exposure. Among the hardest-hit countries, Japan ($-10.0\%$), India ($-8.7\%$), and Germany ($-7.8\%$) are all major energy importers, while net exporters such as Norway ($+5.4\%$) and Canada ($+0.4\%$) were largely unaffected or gained.
 
 % ====================================================================
 % 7. CONCLUSION
