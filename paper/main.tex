@@ -317,7 +317,7 @@ Figure~\ref{fig:event_study} visualizes the full cross-sectional distribution of
 
 Table~\ref{tab:crosssection} presents our main cross-sectional results. Across all six specifications, oil beta ($\gamma_1$) is the dominant predictor of CARs, providing strong support for H1.
 
-In the baseline specification including only $\beta_{\text{oil}}$ (Spec~1), $\gamma_1 = +21.45$ ($t = 3.72$, $R^2 = 0.404$). Adding market beta (Spec~2) leaves the estimate virtually unchanged at $+20.18$ ($t = 3.57$, $R^2 = 0.422$). The coefficient remains stable when progressively adding macroeconomic factor betas (Spec~3: $\gamma_1 = +18.38$, $t = 3.52$) and the full suite of fundamental controls (Spec~6: $\gamma_1 = +19.25$, $t = 2.88$, $R^2 = 0.682$). The attenuation from Spec~1 to Spec~6 is only 10.2\%, indicating that oil beta is not proxying for market risk, volatility exposure, firm size, leverage, or valuation.
+In the baseline specification including only $\beta_{\text{oil}}$ (Spec~1), $\gamma_1 = +21.45$ ($t = 3.72$, $R^2 = 0.404$). Adding market beta (Spec~2) leaves the estimate virtually unchanged at $+20.18$ ($t = 3.57$, $R^2 = 0.422$). The coefficient remains stable when progressively adding macroeconomic factor betas (Spec~3: $\gamma_1 = +18.38$, $t = 3.52$) and the full suite of fundamental controls (Spec~6: $\gamma_1 = +19.25$, $t = 2.88$, $R^2 = 0.682$). The attenuation from Spec~1 to Spec~6 is only 10.2\%, indicating that oil beta is not proxying for market risk, volatility exposure, firm size, leverage, or valuation. We designate Spec~(2) as the preferred specification: it controls for market risk while preserving degrees of freedom ($\text{Adj.}\ R^2 = 0.385$ vs.\ $0.563$ for Spec~6, which uses 9 regressors with only 24 residual degrees of freedom). The stability of $\gamma_1$ across specifications confirms that the result is not sensitive to this choice.
 
 To address within-sector correlation, we re-estimate Spec~(2) and Spec~(3) with standard errors clustered at the GICS sector level (11 clusters). The clustered $t$-statistics are \textit{larger} than the HC3 values ($t = 6.01$ vs. $3.57$ for Spec~2; $t = 5.01$ vs. $3.52$ for Spec~3), indicating that within-cluster residual correlation is actually negative---sectors within the same GICS group have offsetting residuals, so HC3 standard errors are conservative.
 
@@ -352,6 +352,7 @@ Macro controls & & & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{Yes} & & \mult
 Fundamentals & & & & & \multicolumn{1}{c}{Yes} & \multicolumn{1}{c}{Yes} \\[4pt]
 \midrule
 $R^2$ & 0.404 & 0.422 & 0.597 & 0.496 & 0.522 & 0.682 \\
+Adj.\ $R^2$ & 0.385 & 0.385 & 0.525 & 0.426 & 0.416 & 0.563 \\
 $N$ & 34 & 34 & 34 & 34 & 34 & 34 \\
 \bottomrule
 \end{tabular}
