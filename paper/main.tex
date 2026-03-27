@@ -451,7 +451,7 @@ Taken together, the mechanism evidence is directionally consistent with theory: 
 
 \subsection{Multi-event panel design}
 
-To establish that our findings generalize beyond the Hormuz crisis, we construct a panel dataset of 34 ETFs observed across five oil-related geopolitical events ($N = 170$ observations). For each event, we compute CARs over the $[-10, +10]$ window using the same market-model methodology. Pre-event oil betas are estimated from the pre-Hormuz window (March 2025 to February 2026), treating oil sensitivity as a stable sector characteristic.\footnote{This design choice warrants discussion. Using a common beta estimation period ensures cross-event comparability but introduces a look-ahead concern for historical events: the 2025--2026 betas embed information about sectoral restructuring that occurred after the earlier events. We adopt this approach because our interest is in whether \textit{current} sectoral oil exposure is associated with \textit{past} event responses---i.e., whether the cross-sectional pattern is stable over time. The fact that pre-Hormuz betas predict CARs for events 4--6 years earlier supports the view that relative oil sensitivity is a persistent sector characteristic. Nevertheless, we interpret the historical event results as documenting cross-sectional \textit{associations} rather than out-of-sample \textit{predictions}. As a robustness check, we re-estimate oil betas using event-specific pre-event windows for each historical event (Table~\ref{tab:eventbetas}).}
+To establish that our findings generalize beyond the Hormuz crisis, we construct a panel dataset of 34 ETFs observed across five oil-related geopolitical events ($N = 170$ observations). For each event, we compute CARs over the $[-10, +10]$ window using the same market-model methodology. Pre-event oil betas are estimated from the pre-Hormuz window (March 2025 to February 2026), treating oil sensitivity as a stable sector characteristic.\footnote{This design choice warrants discussion. Using a common beta estimation period ensures cross-event comparability but introduces a look-ahead concern for historical events: the 2025--2026 betas embed information about sectoral restructuring that occurred after the earlier events. We adopt this approach because our interest is in whether \textit{current} sectoral oil exposure is associated with \textit{past} event responses---i.e., whether the cross-sectional pattern is stable over time. The fact that pre-Hormuz betas predict CARs for events 4--6 years earlier supports the view that relative oil sensitivity is a persistent sector characteristic. The cross-event results reported in Section~\ref{sec:external} use event-specific betas as the primary specification (Table~\ref{tab:eventbetas}), with common pre-Hormuz betas reported as a robustness check (Table~\ref{tab:events}). The multi-event panel regressions (Table~\ref{tab:panel}) use pre-Hormuz betas for cross-event comparability within the panel structure.}
 
 Table~\ref{tab:panel} reports the panel regression results with event fixed effects and ETF-clustered standard errors.
 
@@ -514,54 +514,63 @@ Adding market beta as a control (Spec~3) leaves the interaction coefficient unch
 
 \subsection{Cross-event consistency of the oil channel}
 
-Table~\ref{tab:events} reports cross-sectional $\gamma_1$ estimates for each event individually, further demonstrating the consistency of the oil channel and the supply-demand asymmetry.
+To establish that the oil-beta channel is not specific to the Hormuz crisis, we estimate cross-sectional regressions for each event using event-specific oil betas---estimated from 240-day windows ending 10 days before the respective event. This approach eliminates the look-ahead concern that arises when applying post-event betas to earlier events, and provides the cleanest test of whether the oil channel operates consistently across different geopolitical contexts.
+
+Table~\ref{tab:eventbetas} reports the results. All four supply-side events produce positive $\gamma_1$, and four of five events are statistically significant. The COVID demand shock produces a strongly negative $\gamma_1 = -61.54$ ($t = -5.53$, $p < 0.0001$)---substantially larger in magnitude than the pre-Hormuz beta estimate ($-32.61$), indicating that the demand-side result is robust and, if anything, conservative in the main panel specification. The Mid-East 2023 event loses significance ($p = 0.171$) with event-specific betas, consistent with this being the weakest event in our sample.
 
 \begin{table}[H]
 \centering
-\caption{Cross-Sectional $\gamma_1$ Estimates by Event}
-\label{tab:events}
+\caption{Cross-Sectional $\gamma_1$ Estimates by Event (Event-Specific Betas)}
+\label{tab:eventbetas}
 \begin{threeparttable}
 \begin{tabular}{llccccc}
 \toprule
 Event & Type & $\gamma_1$ & $t$-stat & $p$-value & $R^2$ & $\Phi$ \\
 \midrule
-Hormuz 2026 & Supply & $+20.175$ & 3.57 & 0.0004 & 0.422 & 0.723 \\
-Russia--Ukraine & Supply & $+36.045$ & 6.93 & $<0.0001$ & 0.445 & 2.073 \\
-OPEC+ Cut & Supply & $+11.101$ & 2.34 & 0.019 & 0.144 & 1.577 \\
-Mid-East 2023 & Supply & $+10.696$ & 2.54 & 0.011 & 0.226 & 0.996 \\
+Hormuz 2026 & Supply & $+23.506$ & 3.73 & 0.0002 & 0.448 & 0.723 \\
+Russia--Ukraine & Supply & $+24.555$ & 3.97 & 0.0001 & 0.287 & 2.073 \\
+OPEC+ Cut & Supply & $+12.287$ & 2.35 & 0.019 & 0.172 & 1.577 \\
+Mid-East 2023 & Supply & $+6.931$ & 1.37 & 0.171 & 0.087 & 0.996 \\
 \midrule
-COVID Crash & Demand & $-32.614$ & $-2.46$ & 0.014 & 0.227 & 3.195 \\
+COVID Crash & Demand & $-61.544$ & $-5.53$ & $<0.0001$ & 0.263 & 3.195 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]\footnotesize
-\item \textit{Notes:} Each row reports Spec~(2) from Section~\ref{sec:results} estimated separately for the indicated event. $N = 34$ for all events. $\Phi = |\text{CAR}_{\text{SPY}}| / \overline{|\text{CAR}_i|}$. All supply-shock $\gamma_1$ values are positive; the demand-shock $\gamma_1$ is negative, consistent with H4.
+\item \textit{Notes:} Each row reports a cross-sectional regression of CARs on oil beta, where oil beta is estimated from a 240-day window ending 10 days before the respective event. This eliminates look-ahead bias for historical events. $N = 34$ for all events. $\Phi = |\text{CAR}_{\text{SPY}}| / \overline{|\text{CAR}_i|}$. All supply-shock $\gamma_1$ values are positive; the demand-shock $\gamma_1$ is negative, consistent with H4.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
 
-All four supply-side events produce positive and significant $\gamma_1$ (range: $+10.70$ to $+36.05$), while the demand-side COVID shock produces a negative and significant $\gamma_1 = -32.61$. The average $\gamma_1$ for supply shocks is $+19.50$; for demand shocks it is $-32.61$. This consistency across events of different magnitudes, time periods, and geopolitical contexts provides strong external validity for the oil-beta transmission channel, complementing panel evidence on oil-conflict-stock return dynamics in \citet{dong2024interplay}.
+The consistency of the sign pattern across five events---spanning different time periods, shock magnitudes, and geopolitical contexts---provides strong external validity for the oil-beta transmission channel, complementing panel evidence on oil-conflict-stock return dynamics in \citet{dong2024interplay}.
 
-\subsection{Robustness: Event-specific beta estimation}
+\subsection{Robustness: Common beta specification}
 
-To address the look-ahead concern inherent in using pre-Hormuz betas for historical events, we re-estimate oil betas using event-specific estimation windows (240 trading days ending 10 days before each event). Table~\ref{tab:eventbetas} reports the results.
+As an alternative specification, Table~\ref{tab:events} reports $\gamma_1$ estimates using pre-Hormuz betas (March 2025 to February 2026) applied to all five events. This approach sacrifices event-specific identification for cross-event comparability, treating oil sensitivity as a time-invariant sector characteristic.
 
 \begin{table}[H]
 \centering
-\caption{Event-Specific Beta Robustness: $\gamma_1$ With Event-Specific Oil Betas}
-\label{tab:eventbetas}
+\caption{Cross-Sectional $\gamma_1$ Estimates by Event (Common Pre-Hormuz Betas)}
+\label{tab:events}
 \begin{threeparttable}
-\begin{tabular}{llccccl}
+\begin{tabular}{llccccc}
 \toprule
-Event & Type & $\gamma_1$ & $t$-stat & $p$-value & $R^2$ & Sign vs.\ Main \\
+Event & Type & $\gamma_1$ & $t$-stat & $p$-value & $R^2$ & Sign vs.\ Primary \\
 \midrule
-Hormuz 2026 & Supply & $+23.506$ & 3.73 & 0.0002 & 0.448 & Same \\
-Russia--Ukraine & Supply & $+24.555$ & 3.97 & 0.0001 & 0.287 & Same \\
-OPEC+ Cut & Supply & $+12.287$ & 2.35 & 0.019 & 0.172 & Same \\
-Mid-East 2023 & Supply & $+6.931$ & 1.37 & 0.171 & 0.087 & Same \\
-COVID Crash & Demand & $-61.544$ & $-5.53$ & $<0.0001$ & 0.263 & Same \\
+Hormuz 2026 & Supply & $+20.175$ & 3.57 & 0.0004 & 0.422 & Same \\
+Russia--Ukraine & Supply & $+36.045$ & 6.93 & $<0.0001$ & 0.445 & Same \\
+OPEC+ Cut & Supply & $+11.101$ & 2.34 & 0.019 & 0.144 & Same \\
+Mid-East 2023 & Supply & $+10.696$ & 2.54 & 0.011 & 0.226 & Same \\
+\midrule
+COVID Crash & Demand & $-32.614$ & $-2.46$ & 0.014 & 0.227 & Same \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Notes:} Each row uses oil betas estimated from the pre-Hormuz window (March 2025 to February 2026) applied to all events. ``Sign vs.\ Primary'' indicates consistency with the event-specific beta results in Table~\ref{tab:eventbetas}. All five events produce the same sign, and all are statistically significant. The COVID $\gamma_1$ is smaller in magnitude ($-32.61$ vs.\ $-61.54$), suggesting that the common-beta specification is conservative for the demand-side event.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+All five events produce the same sign under both specifications, and all are significant with common betas (including Mid-East 2023, which gains significance with the pre-Hormuz betas). The COVID magnitude is notably smaller with common betas ($-32.61$ vs.\ $-61.54$), confirming that the main panel results using pre-Hormuz betas provide a conservative estimate of the demand-side effect.
 \item \textit{Notes:} Each row re-estimates the cross-sectional regression using oil betas computed from a 240-day estimation window ending 10 days before the respective event. ``Sign vs.\ Main'' indicates whether the sign matches Table~\ref{tab:events}. All four supply events produce positive $\gamma_1$ and COVID produces negative $\gamma_1$, matching the main results. The COVID coefficient is substantially larger in magnitude ($-61.54$ vs.\ $-32.61$), suggesting that the pre-Hormuz beta specification is conservative for the demand-side result.
 \end{tablenotes}
 \end{threeparttable}
