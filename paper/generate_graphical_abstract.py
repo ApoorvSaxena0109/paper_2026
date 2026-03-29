@@ -165,40 +165,31 @@ x0, x1 = panels_x[0]
 draw_panel(x0, x1, 'GEOPOLITICAL OIL SHOCK', C['navy'])
 cx = (x0 + x1) / 2
 
-# Oil barrel icon
-bw, bh = 3.2, 3.8
-bx, by = cx - 3.0, 23.5
-ax.add_patch(FancyBboxPatch((bx, by), bw, bh,
-             boxstyle="round,pad=0.1", facecolor=C['charcoal'],
-             edgecolor=C['navy'], linewidth=0.8))
-# Barrel bands
-for yb in [by + 1.0, by + 2.6]:
-    ax.plot([bx + 0.25, bx + bw - 0.25], [yb, yb], color=C['gray'], lw=0.8)
-# Oil label on barrel
-ax.text(bx + bw/2, by + bh/2, 'OIL', ha='center', va='center',
-        fontsize=5, fontweight='bold', color=C['silver'], fontfamily=FONT)
-
-# Price spike arrow — labeled as USO (paper's data point)
-ax.annotate('', xy=(bx + bw + 2.0, by + bh - 0.3), xytext=(bx + bw + 2.0, by + 0.3),
-            arrowprops=dict(arrowstyle='->', color=C['dkred'], lw=2.2,
-                            mutation_scale=14))
-ax.text(bx + bw + 3.0, by + 2.8, '+42.3%', fontsize=6.5, fontweight='bold',
+# Price spike — clean red up-arrow with USO label (no barrel clutter)
+arrow_x = cx - 1.5
+arrow_by, arrow_ty = 25.0, 29.5
+ax.annotate('', xy=(arrow_x, arrow_ty), xytext=(arrow_x, arrow_by),
+            arrowprops=dict(arrowstyle='->', color=C['dkred'], lw=3.0,
+                            mutation_scale=18))
+ax.text(arrow_x + 1.5, 28.2, '+42.3%', fontsize=7.5, fontweight='bold',
         color=C['dkred'], fontfamily=FONT)
-ax.text(bx + bw + 3.0, by + 1.6, 'USO', fontsize=5, fontweight='bold',
-        color=C['charcoal'], fontfamily=FONT)
+ax.text(arrow_x + 1.5, 26.8, 'USO (Oil ETF)', fontsize=4.5,
+        color=C['steel'], fontfamily=FONT)
+ax.text(arrow_x + 1.5, 25.6, 'Oil prices surged', fontsize=4.5,
+        color=C['steel'], fontfamily=FONT)
 
-# Event name
-ax.text(cx, 22.0, 'Strait of Hormuz 2026', ha='center', fontsize=6.5,
+# Event name — spaced below the arrow block
+ax.text(cx, 23.5, 'Strait of Hormuz 2026', ha='center', fontsize=6.5,
         fontweight='bold', color=C['navy'], fontfamily=FONT)
-ax.text(cx, 20.5, '~21% of global oil consumption\ntransits Hormuz',
+ax.text(cx, 21.8, '~21% of global oil consumption\ntransits Hormuz',
         ha='center', fontsize=4.5, color=C['steel'], fontfamily=FONT,
         linespacing=1.3)
 
 # Divider
-ax.plot([x0 + 2, x1 - 2], [18.8, 18.8], color=C['mist'], lw=0.5)
+ax.plot([x0 + 2, x1 - 2], [19.8, 19.8], color=C['mist'], lw=0.5)
 
 # Validated across 5 events
-ax.text(cx, 17.6, 'Validated Across 5 Events', ha='center', fontsize=5.5,
+ax.text(cx, 18.8, 'Validated Across 5 Events', ha='center', fontsize=5.5,
         fontweight='bold', color=C['navy'], fontfamily=FONT)
 
 events = [
@@ -209,7 +200,7 @@ events = [
     ('COVID-19 2020',        'Demand', C['dkred']),
 ]
 for i, (name, typ, col) in enumerate(events):
-    yy = 16.3 - i * 1.9
+    yy = 17.3 - i * 2.0
     ax.plot(x0 + 2.5, yy, 'o', color=col, markersize=3.5)
     ax.text(x0 + 3.8, yy, name, fontsize=4, va='center', color=C['steel'],
             fontfamily=FONT)
@@ -231,9 +222,11 @@ px0, px1 = x0 + 3.0, x1 - 1.5
 py0, py1 = 17.0, 29.5
 mid_y = (py0 + py1) / 2
 
+# No separate background box — draw directly on panel white
+# Just a subtle border to frame the plot area
 ax.add_patch(FancyBboxPatch((px0 - 0.8, py0 - 0.3), px1 - px0 + 1.6, py1 - py0 + 0.6,
-             boxstyle="round,pad=0.15", facecolor=C['white'],
-             edgecolor=C['mist'], linewidth=0.4))
+             boxstyle="round,pad=0.15", facecolor='none',
+             edgecolor=C['mist'], linewidth=0.3))
 
 # Axes
 ax.annotate('', xy=(px0, py1 + 0.2), xytext=(px0, py0 - 0.2),
@@ -350,14 +343,15 @@ ax.plot([cx - bar_half, cx - nw/2], [top_y, ny + nh], color=C['dkred'],
 ax.plot([cx + bar_half, cx + nw/2], [top_y, ny + nh], color=C['dkred'],
         lw=1.0, ls='--', alpha=0.6)
 
-# S&P 500 — WHITE box with RED dashed border (warning, not gold)
+# S&P 500 — WHITE box with RED border (warning, not gold)
+# Use solid red border (FancyBboxPatch doesn't support dashed on rounded)
 ax.add_patch(FancyBboxPatch((cx - nw/2, ny), nw, nh,
              boxstyle="round,pad=0.08", facecolor=C['white'],
-             edgecolor=C['dkred'], linewidth=1.0, linestyle='--'))
+             edgecolor=C['dkred'], linewidth=1.2))
 ax.text(cx, ny + nh/2, '\u22121.81%', ha='center', va='center', fontsize=5.5,
         fontweight='bold', color=C['dkred'], fontfamily=FONT)
 ax.text(cx, ny - 0.7, 'S&P 500', ha='center', fontsize=4.5,
-        color=C['steel'], fontfamily=FONT)
+        fontweight='bold', color=C['steel'], fontfamily=FONT)
 
 # Psi metric box — palered with strong red border
 psi_y0, psi_y1 = 11.0, 19.5
@@ -444,17 +438,17 @@ ax.text(x0 + 3, dy0 + 1.2, r'$\gamma_1$ < 0  (COVID reversal)', fontsize=4,
         color=C['steel'], fontfamily=FONT)
 
 # Interaction coefficient — strongest test statistic
-ax.add_patch(FancyBboxPatch((x0 + 1, 18.5), x1 - x0 - 2, 2.2,
+ax.add_patch(FancyBboxPatch((x0 + 1, 19.0), x1 - x0 - 2, 2.0,
              boxstyle="round,pad=0.1", facecolor=C['white'],
              edgecolor=C['navy'], linewidth=0.5))
-ax.text(cx, 19.6, r'$\beta_{oil}$ $\times$ Supply = +58.79***',
+ax.text(cx, 20.0, r'$\beta_{oil}$ $\times$ Supply = +58.79***',
         ha='center', fontsize=4.5, fontweight='bold', color=C['navy'],
         fontfamily=FONT)
-ax.text(cx, 18.8, 't = 5.22, strongest test',
+ax.text(cx, 19.3, 't = 5.22, strongest test',
         ha='center', fontsize=3.5, color=C['gray'], fontfamily=FONT)
 
 # Who is affected — white cards with navy left-border accent
-ax.text(cx, 17.2, 'Who Is Affected?', ha='center', fontsize=5.5,
+ax.text(cx, 17.6, 'Who Is Affected?', ha='center', fontsize=5.5,
         fontweight='bold', color=C['navy'], fontfamily=FONT)
 
 stakeholders = [
@@ -463,18 +457,19 @@ stakeholders = [
     ('Risk Managers', 'Index volatility uninformative'),
 ]
 for i, (role, desc) in enumerate(stakeholders):
-    yy = 15.5 - i * 2.6
+    yy = 15.8 - i * 2.5
+    card_h = 1.8
     # White card
-    ax.add_patch(FancyBboxPatch((x0 + 1.2, yy - 0.4), x1 - x0 - 2.4, 2.0,
+    ax.add_patch(FancyBboxPatch((x0 + 1.2, yy - 0.3), x1 - x0 - 2.4, card_h,
                  boxstyle="round,pad=0.1", facecolor=C['white'],
                  edgecolor=C['mist'], linewidth=0.3))
     # Navy left-border accent
-    ax.add_patch(FancyBboxPatch((x0 + 1.2, yy - 0.4), 0.5, 2.0,
+    ax.add_patch(FancyBboxPatch((x0 + 1.2, yy - 0.3), 0.5, card_h,
                  boxstyle="square,pad=0", facecolor=C['navy'],
                  edgecolor='none'))
-    ax.text(cx + 0.3, yy + 0.65, role, ha='center', fontsize=4.5,
+    ax.text(cx + 0.3, yy + 0.6, role, ha='center', fontsize=4.5,
             fontweight='bold', color=C['navy'], fontfamily=FONT)
-    ax.text(cx + 0.3, yy - 0.05, desc, ha='center', fontsize=3.5,
+    ax.text(cx + 0.3, yy, desc, ha='center', fontsize=3.5,
             color=C['steel'], fontfamily=FONT)
 
 # ── Save ──
@@ -493,3 +488,10 @@ print(f"Dimensions: {w} x {h} pixels (w x h)")
 print(f"Aspect ratio: {w/h:.2f} (target: {1328/531:.2f})")
 print(f"Meets minimum: {'YES' if w >= 1328 and h >= 531 else 'NO'}")
 print(f"DPI: {DPI}")
+print(f"Font used: {FONT}")
+
+# ── Thumbnail test: ScienceDirect preview ~500x200 px ──
+thumb = img.resize((500, 200), Image.LANCZOS)
+thumb_path = '/home/user/paper_2026/paper/graphical_abstract_thumbnail.png'
+thumb.save(thumb_path)
+print(f"Thumbnail saved: {thumb_path} (500x200 — check readability)")
