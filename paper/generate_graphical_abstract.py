@@ -263,7 +263,7 @@ ax.add_patch(FancyBboxPatch((2, bar_y), 96, bar_h,
              edgecolor=C['mist'], linewidth=1))
 
 ax.text(50, bar_y + bar_h/2 + 0.5,
-        'Masking is significantly stronger during crises than non-event periods',
+        'Masking is materially stronger during crises than non-event periods',
         ha='center', va='center', fontsize=9, fontweight='bold',
         color=C['charcoal'], fontfamily=FONT)
 ax.text(50, bar_y + bar_h/2 - 1.5,
