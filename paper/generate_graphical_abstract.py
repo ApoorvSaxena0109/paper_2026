@@ -79,15 +79,14 @@ ax.add_patch(FancyBboxPatch((0, 0), 100, 40, boxstyle="square,pad=0",
 # TITLE
 # ══════════════════════════════════════════════════
 ax.text(50, 38.0,
-        'Do Aggregate Indices Mask Economic Disruptions?',
+        'Geopolitical Oil Shocks and Sectoral Heterogeneity:',
         ha='center', va='center', fontsize=14, fontweight='bold',
         color=C['charcoal'], fontfamily=FONT)
 
 ax.text(50, 35.8,
-        'Geopolitical Oil Shocks, Sectoral Heterogeneity, and Aggregation Masking: '
-        'Evidence from a Multi-Event Framework',
-        ha='center', va='center', fontsize=5.5, color=C['gray'],
-        fontfamily=FONT, style='italic')
+        'Evidence on Market Transmission and Aggregation Masking',
+        ha='center', va='center', fontsize=14, fontweight='bold',
+        color=C['charcoal'], fontfamily=FONT)
 
 # ══════════════════════════════════════════════════
 # BOX 1: OIL SHOCK (blue, left)
