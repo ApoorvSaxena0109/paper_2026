@@ -44,24 +44,30 @@ ax.set_ylim(0, 40)
 ax.axis('off')
 
 # ══════════════════════════════════════════════════
-# COLORS
+# COLORS — each color has ONE semantic meaning
+#
+#   Blue      = Oil shock (neutral/informational input)
+#   Green     = Winners / positive returns (finance convention)
+#   Red       = Losers / negative returns / warning / masking
+#   Amber     = Aggregate index (caution — misleading signal)
+#   Gray      = Text hierarchy + structural elements
 # ══════════════════════════════════════════════════
 C = {
-    'blue':      '#2563EB',
-    'ltblue':    '#93C5FD',
+    'blue':      '#2563EB',   # Oil shock box only
+    'ltblue':    '#93C5FD',   # Light text inside blue box
     'navy':      '#1A365D',
-    'amber':     '#F59E0B',
+    'amber':     '#F59E0B',   # Aggregate index (caution)
     'dkamber':   '#92400E',
-    'green':     '#16A34A',
+    'green':     '#16A34A',   # Winners / positive returns
     'dkgreen':   '#166534',
-    'red':       '#DC2626',
-    'dkred':     '#991B1B',
-    'charcoal':  '#1F2937',
-    'steel':     '#4B5563',
-    'gray':      '#6B7280',
-    'silver':    '#9CA3AF',
-    'lightgray': '#F3F4F6',
-    'mist':      '#E5E7EB',
+    'red':       '#DC2626',   # Losers / negative returns / masking
+    'dkred':     '#991B1B',   # Strong warning (≠, ~95%)
+    'charcoal':  '#1F2937',   # Headers, arrows
+    'steel':     '#4B5563',   # Body text
+    'gray':      '#6B7280',   # Secondary text
+    'silver':    '#9CA3AF',   # Citations
+    'lightgray': '#F3F4F6',   # Box backgrounds
+    'mist':      '#E5E7EB',   # Borders
     'white':     '#FFFFFF',
 }
 
@@ -148,15 +154,15 @@ ax.text(b2_x + 2.5, b2_y + b2_h - 5.5, 'Supply shocks:',
         style='italic')
 
 ax.text(b2_x + 3, b2_y + b2_h - 8, '\u25B2',
-        va='center', fontsize=12, color=C['red'], fontfamily=FONT)
+        va='center', fontsize=12, color=C['dkgreen'], fontfamily=FONT)
 ax.text(b2_x + 5.5, b2_y + b2_h - 8, 'High Oil Beta  \u2192  Winners',
-        va='center', fontsize=9.5, fontweight='bold', color=C['red'],
+        va='center', fontsize=9.5, fontweight='bold', color=C['dkgreen'],
         fontfamily=FONT)
 
 ax.text(b2_x + 3, b2_y + b2_h - 10.5, '\u25BC',
-        va='center', fontsize=12, color=C['blue'], fontfamily=FONT)
+        va='center', fontsize=12, color=C['red'], fontfamily=FONT)
 ax.text(b2_x + 5.5, b2_y + b2_h - 10.5, 'Low Oil Beta  \u2192  Losers',
-        va='center', fontsize=9.5, fontweight='bold', color=C['blue'],
+        va='center', fontsize=9.5, fontweight='bold', color=C['red'],
         fontfamily=FONT)
 
 # Divider
@@ -220,11 +226,11 @@ ax.text(b3a_x + b3a_w/2, 22, '\u2260',
 
 
 # ══════════════════════════════════════════════════
-# BOX 3b: REALITY (green, bottom right)
+# BOX 3b: REALITY (red — dispersion = disruption being hidden)
 # ══════════════════════════════════════════════════
 b3b_x, b3b_y, b3b_w, b3b_h = 57.5, 13, 24, 8
 ax.add_patch(FancyBboxPatch((b3b_x, b3b_y), b3b_w, b3b_h,
-             boxstyle="round,pad=0.4", facecolor=C['green'],
+             boxstyle="round,pad=0.4", facecolor=C['red'],
              edgecolor='none'))
 
 ax.text(b3b_x + b3b_w/2, b3b_y + b3b_h - 2, 'Reality',
