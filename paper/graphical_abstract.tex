@@ -1,0 +1,294 @@
+\documentclass[border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, calc, shapes.geometric}
+\usepackage{amssymb}
+
+% ── Bold palette inspired by the examples ──
+\definecolor{dkteal}{HTML}{1A4E5E}
+\definecolor{teal}{HTML}{24717A}
+\definecolor{ltteal}{HTML}{2D8E99}
+\definecolor{navy}{HTML}{1A365D}
+\definecolor{dkblue}{HTML}{1E3A5F}
+\definecolor{blue}{HTML}{3182CE}
+\definecolor{softblue}{HTML}{63B3ED}
+\definecolor{paleblue}{HTML}{D6EFFF}
+\definecolor{dkgreen}{HTML}{1C4532}
+\definecolor{green}{HTML}{38A169}
+\definecolor{softgreen}{HTML}{68D391}
+\definecolor{palegreen}{HTML}{C6F6D5}
+\definecolor{dkred}{HTML}{742A2A}
+\definecolor{red}{HTML}{E53E3E}
+\definecolor{softred}{HTML}{FC8181}
+\definecolor{palered}{HTML}{FED7D7}
+\definecolor{amber}{HTML}{D69E2E}
+\definecolor{dkamber}{HTML}{744210}
+\definecolor{paleamber}{HTML}{FEFCBF}
+\definecolor{charcoal}{HTML}{2D3748}
+\definecolor{steel}{HTML}{4A5568}
+\definecolor{gray}{HTML}{718096}
+\definecolor{silver}{HTML}{CBD5E0}
+\definecolor{mist}{HTML}{E2E8F0}
+\definecolor{snow}{HTML}{F7FAFC}
+\definecolor{purewhite}{HTML}{FFFFFF}
+\definecolor{panelbg}{HTML}{EDF2F7}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+\useasboundingbox (0,0) rectangle (33.2, 13.3);
+
+% ═══════════════════════════════════════
+% DARK BACKGROUND (like the examples)
+% ═══════════════════════════════════════
+\fill[dkteal] (0,0) rectangle (33.2, 13.3);
+
+% ═══ TITLE BAR (lighter teal strip) ═══
+\fill[teal] (0, 11.2) rectangle (33.2, 13.3);
+\node[anchor=center, font=\fontsize{11}{14}\selectfont\bfseries, text=purewhite, text width=31cm, align=center]
+    at (16.6, 12.7) {Geopolitical Oil Shocks, Sectoral Heterogeneity, and Aggregation Masking:};
+\node[anchor=center, font=\fontsize{11}{14}\selectfont\bfseries, text=purewhite, text width=31cm, align=center]
+    at (16.6, 12.0) {Evidence from a Multi-Event Framework};
+% Take-home message (Elsevier template: "The take-home message goes here")
+\node[anchor=center, font=\fontsize{7}{9}\selectfont\itshape, text=paleblue, text width=30cm, align=center]
+    at (16.6, 11.45) {Aggregate market indices conceal ${\sim}$95\% of the sectoral disruption caused by geopolitical oil shocks --- pre-event oil sensitivity predicts which sectors win and lose.};
+
+% ═══════════════════════════════════════
+% THREE MAIN PANELS (white/light cards on dark bg)
+% ═══════════════════════════════════════
+
+% ── PANEL 1: DATA & SHOCK (x: 0.3 – 10.7) ──
+\fill[panelbg, rounded corners=4pt] (0.3, 3.8) rectangle (10.7, 11.3);
+
+% Panel header bar
+\fill[dkblue, rounded corners=3pt] (0.3, 10.5) rectangle (10.7, 11.3);
+\node[font=\fontsize{8}{10}\selectfont\bfseries, text=purewhite]
+    at (5.5, 10.9) {DATA \& SECTORAL DIVERGENCE};
+
+% ── Data scope with icons ──
+% Globe icon (thicker)
+\begin{scope}[shift={(1.2, 9.7)}, scale=0.35]
+    \draw[dkblue, line width=2pt] (0,0) circle (0.8);
+    \draw[dkblue, line width=1pt] (-0.8,0) -- (0.8,0);
+    \draw[dkblue, line width=1pt] (0,-0.8) -- (0,0.8);
+\end{scope}
+\node[anchor=west, font=\fontsize{6}{7}\selectfont\bfseries, text=dkblue] at (1.7, 9.9) {34 US sector ETFs};
+\node[anchor=west, font=\fontsize{5}{6}\selectfont, text=steel] at (1.7, 9.5) {11 GICS sectors + 23 sub-sectors};
+
+% Calendar icon (thicker)
+\begin{scope}[shift={(5.8, 9.7)}, scale=0.3]
+    \fill[dkblue] (-0.8, 0.3) rectangle (0.8, 0.8);
+    \draw[dkblue, line width=2pt] (-0.8,-0.8) rectangle (0.8, 0.8);
+    \foreach \xx in {-0.3, 0.1, 0.5} {
+        \fill[dkblue] (\xx, -0.5) rectangle ++(0.2, 0.2);
+        \fill[dkblue] (\xx, -0.1) rectangle ++(0.2, 0.2);
+    }
+\end{scope}
+\node[anchor=west, font=\fontsize{6}{7}\selectfont\bfseries, text=dkblue] at (6.3, 9.9) {5 geopolitical events};
+\node[anchor=west, font=\fontsize{5}{6}\selectfont, text=steel] at (6.3, 9.5) {2020--2026};
+
+% ── Divergent bars (Hormuz) ──
+\node[anchor=west, font=\fontsize{6.5}{8}\selectfont\bfseries, text=charcoal]
+    at (0.6, 9.0) {Hormuz 2026: CARs [$-$10, +10]};
+
+\def\zx{4.2}
+\def\sc{0.115}
+
+% Winners
+\fill[dkgreen, rounded corners=1pt] (0.5, 8.35) rectangle (2.6, 8.7);
+\node[font=\fontsize{5}{6}\selectfont\bfseries, text=purewhite] at (1.55, 8.52) {WINNERS};
+
+\foreach \tk/\car/\idx in {USO/42.34/0, XOP/17.03/1, FCG/15.70/2} {
+    \pgfmathsetmacro{\yy}{8.0 - \idx*0.55}
+    \pgfmathsetmacro{\bl}{\car*\sc}
+    \fill[softgreen, opacity=0.9] (\zx, \yy) rectangle +(\bl, 0.42);
+    \node[anchor=east, font=\fontsize{5.5}{7}\selectfont\bfseries, text=charcoal]
+        at (\zx - 0.1, \yy + 0.21) {\tk};
+    \node[anchor=west, font=\fontsize{5}{6}\selectfont\bfseries, text=dkgreen]
+        at (\zx + \bl + 0.08, \yy + 0.21) {+\car\%};
+}
+
+% Losers
+\fill[dkred, rounded corners=1pt] (0.5, 6.25) rectangle (2.2, 6.6);
+\node[font=\fontsize{5}{6}\selectfont\bfseries, text=purewhite] at (1.35, 6.42) {LOSERS};
+
+\foreach \tk/\car/\idx in {JETS/14.67/0, XHB/14.68/1, ITB/16.63/2} {
+    \pgfmathsetmacro{\yy}{5.9 - \idx*0.52}
+    \pgfmathsetmacro{\bl}{\car*\sc}
+    \fill[softred, opacity=0.9] (\zx - \bl, \yy) rectangle (\zx, \yy + 0.40);
+    \node[anchor=west, font=\fontsize{5.5}{7}\selectfont\bfseries, text=charcoal]
+        at (\zx + 0.1, \yy + 0.20) {\tk};
+    \node[anchor=east, font=\fontsize{5}{6}\selectfont\bfseries, text=dkred]
+        at (\zx - \bl - 0.08, \yy + 0.20) {$-$\car\%};
+}
+
+\draw[charcoal, line width=0.3pt, opacity=0.3] (\zx, 4.6) -- (\zx, 8.5);
+
+% ── S&P 500 callout ──
+\fill[paleamber, rounded corners=3pt] (0.6, 4.0) rectangle (10.4, 4.95);
+\draw[amber, line width=0.5pt, rounded corners=3pt] (0.6, 4.0) rectangle (10.4, 4.95);
+
+% Chart mini icon (bigger)
+\begin{scope}[shift={(1.0, 4.2)}, scale=0.4]
+    \draw[dkamber, line width=1.5pt] (0,0) -- (0.4, 0.5) -- (0.8, 0.15) -- (1.2, 0.7);
+\end{scope}
+
+\node[anchor=west, font=\fontsize{7}{9}\selectfont\bfseries, text=dkamber]
+    at (1.8, 4.65) {S\&P 500: only $-$1.81\%};
+\node[anchor=west, font=\fontsize{5.5}{7}\selectfont, text=dkamber]
+    at (1.8, 4.25) {59 pp sectoral range masked by cap-weighted aggregation};
+
+% Additional detail: tercile spread
+\node[anchor=west, font=\fontsize{5}{6}\selectfont, text=steel]
+    at (0.8, 3.95) {High-$\beta$ tercile: +4.39\% \quad vs \quad Low-$\beta$ tercile: $-$4.85\% \quad (spread = 9.25 pp, $p = 0.008$)};
+
+
+% ── PANEL 2: FINDINGS (x: 11.0 – 22.0) ──
+\fill[panelbg, rounded corners=4pt] (11.0, 3.8) rectangle (22.0, 11.3);
+
+% Panel header
+\fill[dkblue, rounded corners=3pt] (11.0, 10.5) rectangle (22.0, 11.3);
+\node[font=\fontsize{8}{10}\selectfont\bfseries, text=purewhite]
+    at (16.5, 10.9) {KEY FINDINGS};
+
+% ── Main coefficient ──
+\fill[purewhite, rounded corners=3pt] (11.3, 8.4) rectangle (21.7, 10.2);
+\draw[navy, line width=0.6pt, rounded corners=3pt] (11.3, 8.4) rectangle (21.7, 10.2);
+
+% Magnifying glass
+\begin{scope}[shift={(12.0, 9.5)}, scale=0.25]
+    \draw[navy, line width=2pt] (0,0) circle (0.7);
+    \draw[navy, line width=2pt] (0.5, -0.5) -- (1.0, -1.0);
+\end{scope}
+
+\node[anchor=west, font=\fontsize{6}{7}\selectfont\bfseries, text=navy]
+    at (12.6, 9.55) {Cross-sectional regression (H1)};
+
+\node[anchor=center, font=\fontsize{16}{19}\selectfont\bfseries, text=navy]
+    at (16.5, 9.0) {$\gamma_1 = +20.18$***};
+\node[anchor=center, font=\fontsize{5.5}{7}\selectfont, text=steel]
+    at (16.5, 8.6) {1 s.d.\ oil $\beta$ $\Rightarrow$ 18--21 pp higher CARs \;\textbar\; $p < 0.001$};
+
+% ── Evidence row (three cards — consistent sizes) ──
+\fill[palegreen, rounded corners=2pt] (11.3, 7.2) rectangle (14.3, 8.15);
+\node[font=\fontsize{10}{12}\selectfont\bfseries, text=dkgreen] at (12.8, 7.85) {$R^2 = 0.42$};
+\node[font=\fontsize{5}{6}\selectfont, text=steel] at (12.8, 7.42) {oil $\beta$ alone (Spec 2)};
+
+\fill[paleblue, rounded corners=2pt] (14.5, 7.2) rectangle (18.0, 8.15);
+\node[font=\fontsize{7.5}{9}\selectfont\bfseries, text=dkblue] at (16.25, 7.85) {CI: [15.3, 31.6]};
+\node[font=\fontsize{5}{6}\selectfont, text=steel] at (16.25, 7.42) {2{,}000 bootstrap ($p = 0.000$)};
+
+\fill[paleamber, rounded corners=2pt] (18.2, 7.2) rectangle (21.7, 8.15);
+\node[font=\fontsize{7.5}{9}\selectfont\bfseries, text=dkamber] at (19.95, 7.85) {+4.5 $\to$ +25.1};
+\node[font=\fontsize{5}{6}\selectfont, text=steel] at (19.95, 7.42) {$t$+1 to $t$+15, monotonic};
+
+% ── Supply vs Demand (H4) ──
+\fill[purewhite, rounded corners=3pt] (11.3, 5.0) rectangle (21.7, 7.0);
+\draw[mist, line width=0.4pt, rounded corners=3pt] (11.3, 5.0) rectangle (21.7, 7.0);
+
+% Up/down arrows icon
+\draw[dkgreen, line width=1.5pt, -{Stealth[length=3pt]}] (12.1, 6.3) -- (12.1, 6.65);
+\draw[dkred, line width=1.5pt, -{Stealth[length=3pt]}] (12.3, 6.65) -- (12.3, 6.3);
+
+\node[anchor=west, font=\fontsize{6}{7}\selectfont\bfseries, text=charcoal]
+    at (12.6, 6.55) {Supply--Demand Asymmetry (H4)};
+
+\fill[palegreen, rounded corners=2pt] (11.5, 5.2) rectangle (16.4, 6.1);
+\node[font=\fontsize{7}{8}\selectfont\bfseries, text=dkgreen] at (13.95, 5.8) {Supply: $\gamma_1 > 0$};
+\node[font=\fontsize{4.5}{5.5}\selectfont\itshape, text=steel] at (13.95, 5.4) {4 events, all positive};
+
+\fill[palered, rounded corners=2pt] (16.6, 5.2) rectangle (21.5, 6.1);
+\node[font=\fontsize{7}{8}\selectfont\bfseries, text=dkred] at (19.05, 5.8) {Demand: $\gamma_1 < 0$};
+\node[font=\fontsize{4.5}{5.5}\selectfont\itshape, text=steel] at (19.05, 5.4) {COVID sign reversal};
+
+% ── Interaction stat ──
+\fill[purewhite, rounded corners=2pt] (11.3, 4.1) rectangle (21.7, 4.8);
+\draw[mist, line width=0.3pt, rounded corners=2pt] (11.3, 4.1) rectangle (21.7, 4.8);
+\node[font=\fontsize{6}{7}\selectfont\bfseries, text=navy]
+    at (16.5, 4.45) {$\beta_{oil} \times \text{Supply} = +58.79$*** \;\; ($t = 5.22$, strongest test)};
+
+
+% ── PANEL 3: AGGREGATION MASKING (x: 22.3 – 32.9) ──
+\fill[panelbg, rounded corners=4pt] (22.3, 3.8) rectangle (32.9, 11.3);
+
+% Panel header
+\fill[dkred, rounded corners=3pt] (22.3, 10.5) rectangle (32.9, 11.3);
+\node[font=\fontsize{8}{10}\selectfont\bfseries, text=purewhite]
+    at (27.6, 10.9) {AGGREGATION MASKING};
+
+% ── Ψ metric (the novel contribution) ──
+\fill[purewhite, rounded corners=4pt] (22.6, 7.8) rectangle (32.6, 10.3);
+\draw[red, line width=0.8pt, rounded corners=4pt] (22.6, 7.8) rectangle (32.6, 10.3);
+
+% Warning icon (bigger)
+\fill[red] (23.45, 9.85) -- (23.1, 9.25) -- (23.8, 9.25) -- cycle;
+\node[font=\fontsize{6}{7}\selectfont\bfseries, text=purewhite] at (23.45, 9.42) {!};
+
+\node[anchor=west, font=\fontsize{6}{7}\selectfont\bfseries, text=red]
+    at (24.0, 9.55) {Novel bounded metric (H3)};
+
+\node[font=\fontsize{20}{24}\selectfont\bfseries, text=navy]
+    at (27.6, 9.0) {$\Psi = 0.947$};
+
+\node[font=\fontsize{6.5}{8}\selectfont\bfseries, text=red]
+    at (27.6, 8.2) {$\sim$95\% of sectoral disruption concealed by index};
+
+% ── Proportion bar (taller, better contrast) ──
+\fill[softred, opacity=0.8, rounded corners=1pt] (22.8, 7.0) rectangle (32.0, 7.6);
+\fill[blue, rounded corners=1pt] (32.0, 7.0) rectangle (32.5, 7.6);
+\node[anchor=center, font=\fontsize{5.5}{7}\selectfont\bfseries, text=dkred] at (27.4, 7.3) {concealed 94.7\%};
+\node[anchor=center, font=\fontsize{4.5}{5}\selectfont\bfseries, text=purewhite] at (32.25, 7.3) {5\%};
+
+% ── Crisis vs Normal ──
+\fill[purewhite, rounded corners=2pt] (22.6, 5.8) rectangle (32.6, 6.85);
+\draw[mist, line width=0.3pt, rounded corners=2pt] (22.6, 5.8) rectangle (32.6, 6.85);
+
+\node[font=\fontsize{6}{7}\selectfont\bfseries, text=charcoal] at (27.6, 6.55) {Masking is \textbf{worse} during crises};
+\node[font=\fontsize{6.5}{8}\selectfont, text=navy] at (27.6, 6.1) {Crisis: 0.947 \quad vs \quad Normal: 0.851};
+
+% ── International evidence ──
+\fill[purewhite, rounded corners=2pt] (22.6, 4.55) rectangle (32.6, 5.6);
+\draw[mist, line width=0.3pt, rounded corners=2pt] (22.6, 4.55) rectangle (32.6, 5.6);
+
+% Globe icon (cleaner)
+\begin{scope}[shift={(23.3, 5.0)}, scale=0.25]
+    \draw[dkblue, line width=1.8pt] (0,0) circle (0.8);
+    \draw[dkblue, line width=0.8pt] (-0.8,0) -- (0.8,0);
+    \draw[dkblue, line width=0.8pt] (0,-0.8) -- (0,0.8);
+\end{scope}
+
+\node[anchor=west, font=\fontsize{5.5}{7}\selectfont\bfseries, text=dkblue] at (23.8, 5.25) {International: 14 country ETFs};
+\node[anchor=west, font=\fontsize{5}{6}\selectfont, text=steel] at (23.8, 4.8) {Energy import dep.\ $\to$ CARs ($p < 0.01$, $R^2 = 0.51$)};
+
+% ── Robustness + dispersion ──
+\fill[purewhite, rounded corners=2pt] (22.6, 3.9) rectangle (32.6, 4.4);
+\node[font=\fontsize{4.5}{5.5}\selectfont, text=steel]
+    at (27.6, 4.15) {LOO stable \;\textbar\; 72 placebos \;\textbar\; Alt.\ windows \;\textbar\; Clustered SEs \;\textbar\; 2$\times$ dispersion in crises};
+
+
+% ═══════════════════════════════════════
+% CONCLUSION BOX (like the examples — bold, bordered, prominent)
+% ═══════════════════════════════════════
+\fill[dkblue] (0.3, 0.4) rectangle (32.9, 3.5);
+\fill[purewhite, rounded corners=0pt] (0.35, 0.45) rectangle (32.85, 3.45);
+
+\node[anchor=west, font=\fontsize{9}{11}\selectfont\bfseries, text=dkblue]
+    at (0.7, 3.0) {CONCLUSION:};
+
+\node[anchor=north west, font=\fontsize{7}{9.5}\selectfont, text=charcoal, text width=31.5cm]
+    at (0.7, 2.6) {%
+    Geopolitical oil shocks generate substantial cross-sectional heterogeneity in sectoral returns that is predictable from pre-event oil price sensitivity ($\gamma_1 = +20.18$, $p < 0.001$). Supply shocks create winners and losers ($\gamma_1 > 0$); demand shocks cause correlated losses ($\gamma_1 < 0$). The Aggregation Masking Index ($\Psi = 0.947$) shows that ${\sim}$95\% of this sectoral variation is concealed by aggregate indices, with masking significantly stronger during crises than normal periods. These findings have direct implications for policymakers gauging economic impact, portfolio managers tracking aggregate benchmarks, and researchers using index-level dependent variables.};
+
+% Citation (Elsevier template format: Author details | Reference details | Journal)
+\node[anchor=west, font=\fontsize{5}{6}\selectfont, text=silver]
+    at (0.5, 0.33) {Apoorv Saxena \& Yan-Jie Yang};
+\node[anchor=center, font=\fontsize{5}{6}\selectfont, text=silver]
+    at (16.6, 0.33) {College of Management, Yuan Ze University, Taiwan};
+\node[anchor=east, font=\fontsize{5}{6}\selectfont\itshape, text=silver]
+    at (32.7, 0.33) {Research in International Business and Finance};
+
+
+\end{tikzpicture}
+\end{document}
